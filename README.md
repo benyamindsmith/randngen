@@ -27,7 +27,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Winchmann-Hill
 
-- [x] Inversive Congruential Generator [NEEDS WORK]
+- [x] Inversive Congruential Generator
 
 - [ ] Blumb Blumb Shub [NOT STARTED]
 
@@ -91,10 +91,11 @@ To get involved, feel free to open up and issue and submit a PR.
 ## Future Work
 
 After building out a significant amount of random number generators and doing the appropriate documentation. Next steps would be to either a utility package or a suite of functions within this package that will implement [Diehard tests](https://en.wikipedia.org/wiki/Diehard_tests) and [TestU1 tests](https://en.wikipedia.org/wiki/TestU01).
+
 ## Similar Packages and Inspiration
 
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
 
-- [PracRand](https://github.com/tylov-fork/PractRand)
+- [PractRand](https://github.com/tylov-fork/PractRand)
 
 
