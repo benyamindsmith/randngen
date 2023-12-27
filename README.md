@@ -27,7 +27,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Winchmann-Hill
 
-- [ ] Inversive Congruential Generator [NEEDS WORK]
+- [x] Inversive Congruential Generator [NEEDS WORK]
 
 - [ ] Blumb Blumb Shub [NOT STARTED]
 

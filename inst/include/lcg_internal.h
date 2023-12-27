@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // Wikipedia: https://en.wikipedia.org/wiki/Linear_congruential_generator
 // [[Rcpp::export]]
-NumericVector lcg(int seed, int n) {
+NumericVector lcg_internal(int seed, int n) {
   NumericVector generated_numbers;
   // Presetting Parameters as per ZX81
   long long m  = pow(2,16)+1;

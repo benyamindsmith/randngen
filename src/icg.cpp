@@ -4,7 +4,6 @@ using namespace Rcpp;
 
 /*
  * Wikipedia: https://en.wikipedia.org/wiki/Inversive_congruential_generator
- * NEEDS WORK
  */
 // [[Rcpp::export]]
 NumericVector icg(int q,int a, int c,int seed, int n) {
@@ -15,7 +14,6 @@ NumericVector icg(int q,int a, int c,int seed, int n) {
     if (number == 0) {
       number = c;
     } else {
-
       number = (a * number + c) % q;
     }
     generated_numbers.push_back(number);
@@ -28,7 +26,7 @@ NumericVector icg(int q,int a, int c,int seed, int n) {
 
 // Testing
 /*** R
-icg(12345,2,3,1,100)
+icg(12356,2,3,1,100)
 */
 
 
