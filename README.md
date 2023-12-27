@@ -1,6 +1,6 @@
 # randgen
 
-A R library of pseudo-random number generators written in C++.
+A opinionated R library of pseudo-random number generators written in C++.
 
 This package aims to be comprehensive with having all popular and emerging random number generators. This package can be used for research and to explore the properties of random number generators as well. 
 
@@ -43,9 +43,9 @@ The following is a list of supported random number generators in this package.
 
 - [ ] KISS [NOT STARTED]
 
-- [ ] Multiply-with-carry (MWC) [NOT STARTED]
+- [x] Multiply-with-carry (MWC)
 
-- [ ] Complementary-multiply-with-carry (CMWC)  [NOT STARTED]
+- [ ] Complementary-multiply-with-carry (CMWC)  [NEEDS WORK]
 
 - [ ] Mersenne Twister (MT)  [NOT STARTED]
 

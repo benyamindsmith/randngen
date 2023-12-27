@@ -10,6 +10,18 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// cmwc
+NumericVector cmwc(int seed, int n);
+RcppExport SEXP _randngen_cmwc(SEXP seedSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(cmwc(seed, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 // icg
 NumericVector icg(int q, int a, int c, int seed, int n);
 RcppExport SEXP _randngen_icg(SEXP qSEXP, SEXP aSEXP, SEXP cSEXP, SEXP seedSEXP, SEXP nSEXP) {
@@ -74,12 +86,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // lfsr
-NumericVector lfsr();
-RcppExport SEXP _randngen_lfsr() {
+NumericVector lfsr(int seed);
+RcppExport SEXP _randngen_lfsr(SEXP seedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(lfsr());
+    Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
+    rcpp_result_gen = Rcpp::wrap(lfsr(seed));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -96,7 +109,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // mwc
-NumericMatrix mwc(int seed, int n);
+NumericVector mwc(int seed, int n);
 RcppExport SEXP _randngen_mwc(SEXP seedSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -123,12 +136,13 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_randngen_cmwc", (DL_FUNC) &_randngen_cmwc, 2},
     {"_randngen_icg", (DL_FUNC) &_randngen_icg, 5},
     {"_randngen_lcg", (DL_FUNC) &_randngen_lcg, 2},
     {"_randngen_lcg_internal", (DL_FUNC) &_randngen_lcg_internal, 2},
     {"_randngen_lcg_parkmiller", (DL_FUNC) &_randngen_lcg_parkmiller, 2},
     {"_randngen_lfg", (DL_FUNC) &_randngen_lfg, 2},
-    {"_randngen_lfsr", (DL_FUNC) &_randngen_lfsr, 0},
+    {"_randngen_lfsr", (DL_FUNC) &_randngen_lfsr, 1},
     {"_randngen_middlesquare", (DL_FUNC) &_randngen_middlesquare, 2},
     {"_randngen_mwc", (DL_FUNC) &_randngen_mwc, 2},
     {"_randngen_winchmann_hill", (DL_FUNC) &_randngen_winchmann_hill, 4},

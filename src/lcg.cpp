@@ -1,8 +1,19 @@
 #include <Rcpp.h>
 #include <math.h>
 using namespace Rcpp;
-
-// Wikipedia: https://en.wikipedia.org/wiki/Linear_congruential_generator
+//' Linear Congruential Generator
+//'
+//' [TODO: WRITE DESCRIPTION]
+//'
+//' For more reading check out Wikipedia:https://en.wikipedia.org/wiki/Linear_congruential_generator
+//'
+//' @param seed initial starting value
+//' @param n the number of random numbers you want to create.
+//' @examples
+//' random_numbers <- lcg(1234, 1000)
+//' # Plot numbers to see that they are random
+//' plot(random_numbers)
+//' @export
 // [[Rcpp::export]]
 NumericVector lcg(int seed, int n) {
   NumericVector generated_numbers;
