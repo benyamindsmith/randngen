@@ -7,7 +7,7 @@ This package aims to be comprehensive with having all popular and emerging rando
 ## Installing this Package
 
 ```r
-devtools::install_github("benyamindsmith/randgen")
+devtools::install_github("benyamindsmith/randngen")
 ```
 ## Random Number Generators Available in this Package
 
