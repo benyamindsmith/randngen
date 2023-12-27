@@ -4,7 +4,7 @@ using namespace Rcpp;
 
 // Wikipedia: https://en.wikipedia.org/wiki/Linear-feedback_shift_register
 // [[Rcpp::export]]
-NumericVector lfsr() {
+NumericVector lfsr(int seed) {
   return 0;
 }
 

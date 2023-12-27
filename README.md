@@ -94,3 +94,7 @@ After building out a significant amount of random number generators and doing th
 ## Similar Packages and Inspiration
 
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
+
+- [PracRand](https://github.com/tylov-fork/PractRand)
+
+
