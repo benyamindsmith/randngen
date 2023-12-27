@@ -9,6 +9,10 @@ lcg <- function(seed, n) {
     .Call(`_randngen_lcg`, seed, n)
 }
 
+lcg_internal <- function(seed, n) {
+    .Call(`_randngen_lcg_internal`, seed, n)
+}
+
 lcg_parkmiller <- function(seed, n) {
     .Call(`_randngen_lcg_parkmiller`, seed, n)
 }

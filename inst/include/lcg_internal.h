@@ -1,3 +1,6 @@
+#ifndef LCG_H
+#define LCG_H
+
 #include <Rcpp.h>
 #include <math.h>
 using namespace Rcpp;
@@ -18,3 +21,5 @@ NumericVector lcg(int seed, int n) {
 
   return generated_numbers;
 }
+
+#endif
