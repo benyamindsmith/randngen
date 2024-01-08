@@ -1,4 +1,4 @@
-# randgen
+# randgen  <a href='https://github.com/benyamindsmith/randngen'><img src='https://github.com/benyamindsmith/randngen/blob/main/logo.png' align="right" height="300" /></a>
 
 A opinionated R library of pseudo-random number generators written in C++.
 
