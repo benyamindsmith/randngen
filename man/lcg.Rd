@@ -4,18 +4,36 @@
 \alias{lcg}
 \title{Linear Congruential Generator}
 \usage{
-lcg(seed, n)
+lcg(seed, n, m = 65537L, a = 75L, c = 74L)
 }
 \arguments{
 \item{seed}{initial starting value}
 
 \item{n}{the number of random numbers you want to create.}
+
+\item{m}{modulus argument. By default, \eqn{m = 2^16  + 1} (follows ZX81 configuration)}
+
+\item{a}{multiplier argument. By default, \eqn{a = 75} (follows ZX81 configuration)}
+
+\item{c}{increment argument By default, \eqn{c = 74} (follows ZX81 configuration)}
 }
 \description{
-[TODO: WRITE DESCRIPTION]
+A linear congruential generator (LCG) is an algorithm that yields a sequence of pseudo-randomized numbers calculated with a discontinuous piecewise linear equation. The method represents one of the oldest and best-known pseudorandom number generator algorithms. The theory behind them is relatively easy to understand, and they are easily implemented and fast, especially on computer hardware which can provide modular arithmetic by storage-bit truncation.
 }
 \details{
-For more reading check out Wikipedia:https://en.wikipedia.org/wiki/Linear_congruential_generator
+The generator is defined by the recurrence relation:
+\deqn{X_{n+1} = (aX + c) \text{ mod } m}
+Where \eqn{X} is the sequence of pseudo-random values and
+
+- \eqn{m, 0 < m} - the "modulus"
+
+- \eqn{a, 0 < a < m} - the "multiplier"
+
+- \eqn{c, 0 \le c < m} - the "increment"
+
+- \eqn{X_0, 0 \le X_0 < m} - the "seed" or "start value"
+
+For more information see the \href{https://en.wikipedia.org/wiki/Linear_congruential_generator}{Wikipedia page}.
 }
 \examples{
 random_numbers <- lcg(1234, 1000)
