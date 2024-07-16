@@ -1,7 +1,19 @@
 #include <Rcpp.h>
 using namespace Rcpp;
-// This code is based on the python code shared on Wikipedia: https://en.wikipedia.org/wiki/Middle-square_method
+//' Middles-Square Method
+//'
+//' [DESCRIPTION: TODO]
+//' This code is based on the python code shared on Wikipedia ([link](https://en.wikipedia.org/wiki/Middle-square_method))
+//'
+//' @param seed initial starting value
+//' @param n number of random numbers desired
+//' @examples
+//' random_numbers <- middlesquare(1234, 1000)
+//' # Plot numbers to see that they are random
+//' plot(random_numbers)
+//' @export
 // [[Rcpp::export]]
+
 NumericVector middlesquare(int seed, int n) {
   NumericVector generated_numbers;
   int number = seed;

@@ -46,6 +46,19 @@ lcg_internal <- function(seed, n) {
     .Call(`_randngen_lcg_internal`, seed, n)
 }
 
+#' Park Miller Generator
+#'
+#' TODO: Documentation
+#'
+#' For more information see the \href{https://en.wikipedia.org/wiki/Lehmer_random_number_generator}{Wikipedia page}.
+#'
+#' @param seed initial starting value
+#' @param n the number of random numbers you want to create.
+#' @examples
+#' random_numbers <- lcg_parkmiller(1234, 1000)
+#' # Plot numbers to see that they are random
+#' plot(random_numbers)
+#' @export
 lcg_parkmiller <- function(seed, n) {
     .Call(`_randngen_lcg_parkmiller`, seed, n)
 }
@@ -58,12 +71,44 @@ lfsr <- function(seed) {
     .Call(`_randngen_lfsr`, seed)
 }
 
+#' Middles-Square Method
+#'
+#' [DESCRIPTION: TODO]
+#' This code is based on the python code shared on Wikipedia ([link](https://en.wikipedia.org/wiki/Middle-square_method))
+#'
+#' @param seed initial starting value
+#' @param n number of random numbers desired
+#' @examples
+#' random_numbers <- middlesquare(1234, 1000)
+#' # Plot numbers to see that they are random
+#' plot(random_numbers)
+#' @export
 middlesquare <- function(seed, n) {
     .Call(`_randngen_middlesquare`, seed, n)
 }
 
-mwc <- function(seed, n) {
-    .Call(`_randngen_mwc`, seed, n)
+#' Multiply With Carry (MWC)
+#'
+#' The multiply-with-carry (MWC) method is a method invented by \href{https://en.wikipedia.org/wiki/George_Marsaglia}{George Marsaglia} for generating sequences of random integers based on an initial set of from two to manu thousands of randomly chosent seed values. The main advantages of the MWC mehtod are that it invokes simple computer integer arithmetic and leads to very fast generation of sequences of random numbers with immense periods, ranging from around \eqn{2^{60}} to \eqn{2^{20000000}}.
+#'
+#' A MWC generator is a special form of a Lehmer Random Number Generator (see \code{\link{lcg_parkmiller}}) \eqn{x_n=bx_{n-1} \mod p} which allows efficient implementation of a prime modulus \eqn{p} much larger than the machine word size.
+#'
+#' Normal Lehmer generator implementations choose a modulsus close to the machine word size. A MWC generator instead maintains its state it base \eqn{b}, so multiplying by \eqn{b} is done implicitly by shifting one word. The base
+#'
+#' For more information, see the \href{https://en.wikipedia.org/wiki/Multiply-with-carry_pseudorandom_number_generator}{Wikipedia page}.
+#' @param seed initial starting value
+#' @param n number of random numbers desired to be generated
+#' @param b by default set to \eqn{2^{32} = 4294967296}
+#' @param a by default set to 7
+#' @param c by default set to 4
+#' @export
+#' @examples
+#' random_numbers <- mwc(6793,1000)
+#' # Plot numbers to see that they are random
+#' plot(random_numbers)
+#' @export
+mwc <- function(seed, n, b = 4294967296L, a = 7L, c = 4L) {
+    .Call(`_randngen_mwc`, seed, n, b, a, c)
 }
 
 winchmann_hill <- function(seed1, seed2, seed3, n) {
