@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-#include <vector>
 #include <math.h>
 
 using namespace std;
@@ -7,10 +6,7 @@ using namespace Rcpp;
 
 // Lagged Fibonacci Generator (LFG)
 // [[Rcpp::export]]
-NumericVector lfg(int seed, int n) {
-  // lags j and k
-  int j = 7;
-  int k = 8;
+NumericVector lfg(int seed, int n, int j = 7, int k = 8, int bitsize=32) {
 
   // ensure that k > j > 0
   if (j <= 0 || k <= 0 || k <= j) {
@@ -33,8 +29,7 @@ NumericVector lfg(int seed, int n) {
   lfg_numbers[1] = fib_series[k-j];
   // Generate the numbers using the LFG algorithm
   for(int i = 2; i < n; ++i) {
-   // modulus is 2^32
-   lfg_numbers[i] = fmod(lfg_numbers[i-1] + lfg_numbers[i-2], pow(2,32));
+   lfg_numbers[i] = fmod(lfg_numbers[i-1] + lfg_numbers[i-2], pow(2,bitsize));
   }
 
   return lfg_numbers;
@@ -42,7 +37,9 @@ NumericVector lfg(int seed, int n) {
 
 // Testing
 /*** R
-plot(lfg(13124, 10000))
+plot(
+lfg(13124, 10000, bitsize = 32)
+)
 */
 
 
