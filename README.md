@@ -15,19 +15,19 @@ The following is a list of supported random number generators in this package.
 
 (Based off of the [this Wikipedia Page](https://en.wikipedia.org/wiki/List_of_random_number_generators))
 
-- [x] Middle Square
+- [ ] Middle Square [NEEDS DOCUMENTATION]
 
-- [x] Park-Miller
+- [ ] Park-Miller [NEEDS DOCUMENTATION]
 
 - [x] Linear Congruential Generator
 
-- [ ] Lagged Fibonacci Generator [NEEDS WORK]
+- [ ] Lagged Fibonacci Generator [NEEDS DOCUMENTATION]
 
 - [ ] Linear Feedback Shift Generator [NEEDS WORK]
 
-- [x] Winchmann-Hill
+- [ ] Winchmann-Hill [NEEDS DOCUMENTATION]
 
-- [x] Inversive Congruential Generator
+- [ ] Inversive Congruential Generator [NEEDS DOCUMENTATION]
 
 - [ ] Blumb Blumb Shub [NOT STARTED]
 
