@@ -63,8 +63,21 @@ lcg_parkmiller <- function(seed, n) {
     .Call(`_randngen_lcg_parkmiller`, seed, n)
 }
 
-lfg <- function(seed, n) {
-    .Call(`_randngen_lfg`, seed, n)
+#' Lagged Fibonacci Generator (LFG)
+#'
+#' [DESCRIPTION: TODO]
+#'
+#' @param seed TODO
+#' @param int n TODO
+#' @param j TODO
+#' @param k TODO
+#' @examples
+#' random_numbers <- lfg(13124, 10000)
+#' # Plot numbers to see that they are random
+#' plot(random_numbers)
+#' @export
+lfg <- function(seed, n, j = 24L, k = 55L, bitsize = 32L) {
+    .Call(`_randngen_lfg`, seed, n, j, k, bitsize)
 }
 
 lfsr <- function(seed) {

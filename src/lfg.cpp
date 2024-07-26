@@ -4,9 +4,22 @@
 using namespace std;
 using namespace Rcpp;
 
-// Lagged Fibonacci Generator (LFG)
-// [[Rcpp::export]]
-NumericVector lfg(int seed, int n, int j = 7, int k = 8, int bitsize=32) {
+//' Lagged Fibonacci Generator (LFG)
+//'
+//' [DESCRIPTION: TODO]
+//'
+//' @param seed TODO
+//' @param int n TODO
+//' @param j TODO
+//' @param k TODO
+//' @examples
+//' random_numbers <- lfg(13124, 10000)
+//' # Plot numbers to see that they are random
+//' plot(random_numbers)
+//' @export
+//[[Rcpp::export]]
+
+NumericVector lfg(int seed, int n, int j = 24, int k = 55, int bitsize=32) {
 
   // ensure that k > j > 0
   if (j <= 0 || k <= 0 || k <= j) {
@@ -14,7 +27,6 @@ NumericVector lfg(int seed, int n, int j = 7, int k = 8, int bitsize=32) {
   }
 
   // initialize the seed vector
-  //vector<long long> fib_series(seed);
   NumericVector fib_series(seed);
   fib_series[0] = 0;
   fib_series[1] = 1;
@@ -38,7 +50,7 @@ NumericVector lfg(int seed, int n, int j = 7, int k = 8, int bitsize=32) {
 // Testing
 /*** R
 plot(
-lfg(13124, 10000, bitsize = 32)
+lfg(123, 10000)
 )
 */
 

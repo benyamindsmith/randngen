@@ -2,6 +2,7 @@
 
 export(lcg)
 export(lcg_parkmiller)
+export(lfg)
 export(middlesquare)
 export(mwc)
 importFrom(Rcpp,sourceCpp)
