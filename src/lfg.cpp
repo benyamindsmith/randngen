@@ -50,7 +50,7 @@ NumericVector lfg(int seed, int n, int j = 24, int k = 55, int bitsize=32) {
 // Testing
 /*** R
 plot(
-lfg(123, 10000)
+lfg(456, 100)
 )
 */
 
