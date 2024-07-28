@@ -8,18 +8,17 @@ using namespace Rcpp;
 //'
 //' [DESCRIPTION: TODO]
 //'
-//' @param seed TODO
 //' @param int n TODO
 //' @param j TODO
 //' @param k TODO
 //' @examples
-//' random_numbers <- lfg(13124, 10000)
+//' random_numbers <- lfg(10000)
 //' # Plot numbers to see that they are random
 //' plot(random_numbers)
 //' @export
 //[[Rcpp::export]]
 
-NumericVector lfg(int seed, int n, int j = 24, int k = 55, int bitsize=32) {
+NumericVector lfg(int n, int j = 65, int k = 71, int bitsize=32) {
 
   // ensure that k > j > 0
   if (j <= 0 || k <= 0 || k <= j) {
@@ -27,11 +26,11 @@ NumericVector lfg(int seed, int n, int j = 24, int k = 55, int bitsize=32) {
   }
 
   // initialize the seed vector
-  NumericVector fib_series(seed);
+  NumericVector fib_series(k);
   fib_series[0] = 0;
   fib_series[1] = 1;
 
-  for (int i = 2; i < seed; ++i) {
+  for (int i = 2; i < k; ++i) {
     fib_series[i] = (fib_series[i - 1] + fib_series[i - 2]);
   }
 
@@ -50,7 +49,7 @@ NumericVector lfg(int seed, int n, int j = 24, int k = 55, int bitsize=32) {
 // Testing
 /*** R
 plot(
-lfg(456, 100)
+lfg(10000)
 )
 */
 
