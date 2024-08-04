@@ -2,9 +2,16 @@
 #include <math.h>
 using namespace Rcpp;
 
-/*
- * Wikipedia: https://en.wikipedia.org/wiki/Inversive_congruential_generator
- */
+//' Inversive Congruential Generator
+//'
+//' NEEDS DOCUMENTATION
+//'
+//' @param q TODO
+//' @param a TODO
+//' @param c TODO
+//' @param seed TODO
+//' @param n
+//'
 // [[Rcpp::export]]
 NumericVector icg(int q,int a, int c,int seed, int n) {
   NumericVector generated_numbers;
@@ -26,7 +33,7 @@ NumericVector icg(int q,int a, int c,int seed, int n) {
 
 // Testing
 /*** R
-icg(12356,2,3,1,100)
+icg(12356,2,3,1,1000)
 */
 
 

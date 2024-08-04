@@ -77,17 +77,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // lfg
-NumericVector lfg(int seed, int n, int j, int k, int bitsize);
-RcppExport SEXP _randngen_lfg(SEXP seedSEXP, SEXP nSEXP, SEXP jSEXP, SEXP kSEXP, SEXP bitsizeSEXP) {
+NumericVector lfg(int n, int j, int k, int bitsize);
+RcppExport SEXP _randngen_lfg(SEXP nSEXP, SEXP jSEXP, SEXP kSEXP, SEXP bitsizeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< int >::type j(jSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type bitsize(bitsizeSEXP);
-    rcpp_result_gen = Rcpp::wrap(lfg(seed, n, j, k, bitsize));
+    rcpp_result_gen = Rcpp::wrap(lfg(n, j, k, bitsize));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -150,7 +149,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randngen_lcg", (DL_FUNC) &_randngen_lcg, 5},
     {"_randngen_lcg_internal", (DL_FUNC) &_randngen_lcg_internal, 2},
     {"_randngen_lcg_parkmiller", (DL_FUNC) &_randngen_lcg_parkmiller, 2},
-    {"_randngen_lfg", (DL_FUNC) &_randngen_lfg, 5},
+    {"_randngen_lfg", (DL_FUNC) &_randngen_lfg, 4},
     {"_randngen_lfsr", (DL_FUNC) &_randngen_lfsr, 1},
     {"_randngen_middlesquare", (DL_FUNC) &_randngen_middlesquare, 2},
     {"_randngen_mwc", (DL_FUNC) &_randngen_mwc, 5},

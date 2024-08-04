@@ -5,6 +5,16 @@ cmwc <- function(seed, n) {
     .Call(`_randngen_cmwc`, seed, n)
 }
 
+#' Inversive Congruential Generator
+#'
+#' NEEDS DOCUMENTATION
+#'
+#' @param q TODO
+#' @param a TODO
+#' @param c TODO
+#' @param seed TODO
+#' @param n
+#'
 icg <- function(q, a, c, seed, n) {
     .Call(`_randngen_icg`, q, a, c, seed, n)
 }
@@ -65,19 +75,29 @@ lcg_parkmiller <- function(seed, n) {
 
 #' Lagged Fibonacci Generator (LFG)
 #'
-#' [DESCRIPTION: TODO]
+#' A Lagged Fibbonacci Generator (LFG or sometimes LFib) is an example of a pseudorandom number generator. This class of pseudorandom number generator is aimed at being an improvment of the 'standard' linear congruential generator.  These are based on the generalization of the Fibbonacci sequence.
 #'
-#' @param seed TODO
-#' @param int n TODO
-#' @param j TODO
-#' @param k TODO
+#' The Fibonacci sequence may be described by the recurrence relation:
+#'
+#' \eqn{S_n = S_{n-1}+S_{n-2}}
+#'
+#' Hence, the new term is the sum of the last two terms in the sequence This can be generalized by the sequence:
+#'
+#' [NEED TO CONTINUE]
+#'
+#' \eqn{S_n \eqiv S_{n-j} \star S_{n-k} \space (\text{mod }m), 0 < j <k}
+#'
+#' @param int n number of random numbers to generate.
+#' @param j \eqn{j} value specified. Note \eqn{0 < j <k}.
+#' @param k  \eqn{k} value specified. Note \eqn{0 < j <k}.
+#' @param bitsize maximum number of bits got \eqn{m}
 #' @examples
-#' random_numbers <- lfg(13124, 10000)
+#' random_numbers <- lfg(10000)
 #' # Plot numbers to see that they are random
 #' plot(random_numbers)
 #' @export
-lfg <- function(seed, n, j = 24L, k = 55L, bitsize = 32L) {
-    .Call(`_randngen_lfg`, seed, n, j, k, bitsize)
+lfg <- function(n, j = 65L, k = 71L, bitsize = 32L) {
+    .Call(`_randngen_lfg`, n, j, k, bitsize)
 }
 
 lfsr <- function(seed) {
