@@ -15,7 +15,7 @@ The following is a list of supported random number generators in this package.
 
 (Based off of the [this Wikipedia Page](https://en.wikipedia.org/wiki/List_of_random_number_generators))
 
-- [ ] Middle Square [NEEDS DOCUMENTATION]
+- [x] Middle Square
 
 - [ ] Park-Miller [NEEDS DOCUMENTATION]
 

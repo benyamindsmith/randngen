@@ -2,8 +2,10 @@
 using namespace Rcpp;
 //' Middles-Square Method
 //'
-//' [DESCRIPTION: TODO]
-//' This code is based on the python code shared on Wikipedia ([link](https://en.wikipedia.org/wiki/Middle-square_method))
+//' The middle-square method is a method for generating pseudorandom numbers. In practice it is highly flawed for many practical purposes. Its period is usually very short and it possesses some severe weaknesses. Repeated enough times, the middle-square method will either begin repeatedly generating the same number or cycle to the previous number in a sequence and loop indefinitely.
+//'
+//' Despite its weaknesses, the middle-square method is a good introductory example for how pseudorandom number generators work. This C++ code is based on the python code shared on Wikipedia (\href{https://en.wikipedia.org/wiki/Middle-square_method#Example_implementation}{link}). For more information check out the \href{https://en.wikipedia.org/wiki/Middle-square_method}{Wikipedia}
+//'
 //'
 //' @param seed initial starting value
 //' @param n number of random numbers desired
