@@ -17,7 +17,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Middle Square
 
-- [ ] Park-Miller [NEEDS DOCUMENTATION]
+- [x] Park-Miller
 
 - [x] Linear Congruential Generator
 

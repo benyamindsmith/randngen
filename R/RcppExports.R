@@ -58,7 +58,11 @@ lcg_internal <- function(seed, n) {
 
 #' Park Miller Generator
 #'
-#' TODO: Documentation
+#' The Lehmer random number generator[1] (named after D. H. Lehmer), sometimes also referred to as the Park–Miller random number generator (after Stephen K. Park and Keith W. Miller), is a type of linear congruential generator (LCG) that operates in multiplicative group of integers modulo n. The general formula is:\cr\cr
+#' \eqn{\displaystyle X_{k+1}=a\cdot X_{k}{\text{ mod } {m}},}\cr\cr
+#'where the modulus m is a prime number or a power of a prime number, the multiplier a is an element of high multiplicative order modulo m (e.g., a primitive root modulo n), and the seed \eqn{X_0} is coprime to \eqn{m}.
+#'
+#' Other names are multiplicative linear congruential generator (MLCG)[2] and multiplicative congruential generator (MCG).
 #'
 #' For more information see the \href{https://en.wikipedia.org/wiki/Lehmer_random_number_generator}{Wikipedia page}.
 #'
