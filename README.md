@@ -21,7 +21,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Linear Congruential Generator
 
-- [ ] Lagged Fibonacci Generator [NEEDS WORK]
+- [x] Lagged Fibonacci Generator
 
 - [ ] Linear Feedback Shift Generator [NEEDS WORK]
 

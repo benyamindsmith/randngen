@@ -16,18 +16,15 @@ lfg(n, j = 65L, k = 71L, bitsize = 32L)
 \item{int}{n number of random numbers to generate.}
 }
 \description{
-A Lagged Fibbonacci Generator (LFG or sometimes LFib) is an example of a pseudorandom number generator. This class of pseudorandom number generator is aimed at being an improvment of the 'standard' linear congruential generator.  These are based on the generalization of the Fibbonacci sequence.
+A Lagged Fibbonacci Generator (LFG or sometimes LFib) is an example of a pseudorandom number generator. This class of pseudorandom number generator is aimed at being an improvment of the 'standard' linear congruential generator.  These are based on the generalization of the Fibbonacci sequence.\cr\cr
+The Fibonacci sequence may be described by the recurrence relation:\cr\cr
+\eqn{S_n = S_{n-1}+S_{n-2}}\cr\cr
+Hence, the new term is the sum of the last two terms in the sequence This can be generalized by the sequence:\cr\cr
+\eqn{S_n \eqiv S_{n-j} \star S_{n-k} \space (\text{mod }m), 0 < j <k}\cr\cr
+In which case, the new term is some combination of any two previous terms. m is usually a power of 2 (m = 2M), often 232 or 264. The  \star operator denotes a general binary operation. This may be either addition, subtraction, multiplication, or the bitwise exclusive-or operator (XOR). In this package, the \star operator denotes addition.The theory of this type of generator is rather complex, and it may not be sufficient simply to choose random values for j and k. These generators also tend to be very sensitive to initialisation.
 }
 \details{
-The Fibonacci sequence may be described by the recurrence relation:
-
-\eqn{S_n = S_{n-1}+S_{n-2}}
-
-Hence, the new term is the sum of the last two terms in the sequence This can be generalized by the sequence:
-
-[NEED TO CONTINUE]
-
-\eqn{S_n \eqiv S_{n-j} \star S_{n-k} \space (\text{mod }m), 0 < j <k}
+For more information, see the \href{https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator}{Wikipedia page}.
 }
 \examples{
 random_numbers <- lfg(10000)
