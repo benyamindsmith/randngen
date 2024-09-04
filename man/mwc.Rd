@@ -18,7 +18,7 @@ mwc(seed, n, b = 4294967296, a = 7L, c = 4L)
 \item{c}{by default set to 4}
 }
 \description{
-The multiply-with-carry (MWC) method is a method invented by \href{https://en.wikipedia.org/wiki/George_Marsaglia}{George Marsaglia} for generating sequences of random integers based on an initial set of from two to manu thousands of randomly chosent seed values. The main advantages of the MWC mehtod are that it invokes simple computer integer arithmetic and leads to very fast generation of sequences of random numbers with immense periods, ranging from around \eqn{2^{60}} to \eqn{2^{20000000}}.
+The multiply-with-carry (MWC) method is a method invented by \href{https://en.wikipedia.org/wiki/George_Marsaglia}{George Marsaglia} for generating sequences of random integers based on an initial set of from two to many thousands of randomly chosen seed values. The main advantages of the MWC method are that it invokes simple computer integer arithmetic and leads to very fast generation of sequences of random numbers with immense periods, ranging from around \eqn{2^{60}} to \eqn{2^{20000000}}.
 }
 \details{
 A MWC generator is a special form of a Lehmer Random Number Generator (see \code{\link{lcg_parkmiller}}) \eqn{x_n=bx_{n-1} \mod p} which allows efficient implementation of a prime modulus \eqn{p} much larger than the machine word size.

@@ -25,7 +25,7 @@ The following is a list of supported random number generators in this package.
 
 - [ ] Linear Feedback Shift Generator [NEEDS WORK]
 
-- [ ] Winchmann-Hill [NEEDS DOCUMENTATION]
+- [x] Winchmann-Hill
 
 - [ ] Inversive Congruential Generator [NEEDS DOCUMENTATION]
 

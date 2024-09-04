@@ -125,7 +125,7 @@ middlesquare <- function(seed, n) {
 
 #' Multiply With Carry (MWC)
 #'
-#' The multiply-with-carry (MWC) method is a method invented by \href{https://en.wikipedia.org/wiki/George_Marsaglia}{George Marsaglia} for generating sequences of random integers based on an initial set of from two to manu thousands of randomly chosent seed values. The main advantages of the MWC mehtod are that it invokes simple computer integer arithmetic and leads to very fast generation of sequences of random numbers with immense periods, ranging from around \eqn{2^{60}} to \eqn{2^{20000000}}.
+#' The multiply-with-carry (MWC) method is a method invented by \href{https://en.wikipedia.org/wiki/George_Marsaglia}{George Marsaglia} for generating sequences of random integers based on an initial set of from two to many thousands of randomly chosen seed values. The main advantages of the MWC method are that it invokes simple computer integer arithmetic and leads to very fast generation of sequences of random numbers with immense periods, ranging from around \eqn{2^{60}} to \eqn{2^{20000000}}.
 #'
 #' A MWC generator is a special form of a Lehmer Random Number Generator (see \code{\link{lcg_parkmiller}}) \eqn{x_n=bx_{n-1} \mod p} which allows efficient implementation of a prime modulus \eqn{p} much larger than the machine word size.
 #'
@@ -154,6 +154,21 @@ mwc <- function(seed, n, b = 4294967296L, a = 7L, c = 4L) {
     .Call(`_randngen_mwc`, seed, n, b, a, c)
 }
 
+#' Winchman-Hill
+#'
+#' The Wichmann-Hill random number generator indeed produces pseudorandom numbers that are typically in the range \eqn{\left[0, 1\right)}. It generates floating-point numbers rather than discrete integers.
+#'
+#' For more information see the \href{https://en.wikipedia.org/wiki/Wichmann%E2%80%93Hill}{Wikipedia Page}.
+#'
+#' @param seed1 Initial seed value.
+#' @param seed2 Initial seed value.
+#' @param seed3 Initial seed value.
+#' @param n Number of random numbers to generate.
+#' @examples
+#' random_numbers <- winchmann_hill(1234, 4321,5678,1000)
+#' # Plot numbers to see that they are random
+#' plot(random_numbers)
+#' @export
 winchmann_hill <- function(seed1, seed2, seed3, n) {
     .Call(`_randngen_winchmann_hill`, seed1, seed2, seed3, n)
 }
