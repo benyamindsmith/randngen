@@ -23,7 +23,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Lagged Fibonacci Generator
 
-- [ ] Linear Feedback Shift Generator [NEEDS WORK]
+- [ ] Linear Feedback Shift Register [NEEDS WORK]
 
 - [x] Winchmann-Hill
 
