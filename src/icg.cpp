@@ -6,6 +6,8 @@ using namespace Rcpp;
 //'
 //' NEEDS DOCUMENTATION
 //'
+//' For more information, please see the \href{https://en.wikipedia.org/wiki/Inversive_congruential_generator}{Wikipedia Page}.
+//'
 //' @param q TODO
 //' @param a TODO
 //' @param c TODO
