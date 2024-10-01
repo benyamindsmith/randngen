@@ -7,7 +7,9 @@ cmwc <- function(seed, n) {
 
 #' Inversive Congruential Generator
 #'
-#' NEEDS DOCUMENTATION
+#' Inversive congruential generators are a type of non-linear congregational pseudorandom number generator which use the modular multiplicative inverse (if it exists) to generate the next number in a sequence. \br\br The standard formula for an inversive congruential generator, modulo some prime \eqn{q} is: \br \eqn{x_0 = \text{seed}, \quad x_{i+1} = \left\{ \begin{array}{ll} (a x_i^{-1} + c) \mod q & \text{if } x_i \neq 0, \\ c & \text{if } x_i = 0. \end{array} \right}
+#'
+#' For more information, please see the \href{https://en.wikipedia.org/wiki/Inversive_congruential_generator}{Wikipedia Page}.
 #'
 #' @param q TODO
 #' @param a TODO
@@ -101,8 +103,11 @@ lfg <- function(n, j = 65L, k = 71L, bitsize = 32L) {
     .Call(`_randngen_lfg`, n, j, k, bitsize)
 }
 
-lfsr <- function(seed) {
-    .Call(`_randngen_lfsr`, seed)
+#' Linear Feedback Shift Register
+#'
+#' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
+lfsr_fib <- function(seed, n) {
+    .Call(`_randngen_lfsr_fib`, seed, n)
 }
 
 #' Middles-Square Method
@@ -158,7 +163,7 @@ mwc <- function(seed, n, b = 4294967296L, a = 7L, c = 4L) {
 #'
 #' The Wichmann-Hill random number generator indeed produces pseudorandom numbers that are typically in the range \eqn{\left[0, 1\right)}. It generates floating-point numbers rather than discrete integers.
 #'
-#' For more information see the \href{https://en.wikipedia.org/wiki/Wichmann%E2%80%93Hill}{Wikipedia Page}.
+#' For more information see the \href{https://en.wikipedia.org/wiki/Wichmann%E2%80%93Hill}{Wikipedia Page}
 #'
 #' @param seed1 Initial seed value.
 #' @param seed2 Initial seed value.

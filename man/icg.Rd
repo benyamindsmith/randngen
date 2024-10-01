@@ -18,5 +18,8 @@ icg(q, a, c, seed, n)
 \item{n}{}
 }
 \description{
-NEEDS DOCUMENTATION
+Inversive congruential generators are a type of non-linear congregational pseudorandom number generator which use the modular multiplicative inverse (if it exists) to generate the next number in a sequence. \br\br The standard formula for an inversive congruential generator, modulo some prime \eqn{q} is: \br \eqn{x_0 = \text{seed}, \quad x_{i+1} = \left\{ \begin{array}{ll} (a x_i^{-1} + c) \mod q & \text{if } x_i \neq 0, \\ c & \text{if } x_i = 0. \end{array} \right}
+}
+\details{
+For more information, please see the \href{https://en.wikipedia.org/wiki/Inversive_congruential_generator}{Wikipedia Page}.
 }

@@ -90,14 +90,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// lfsr
-NumericVector lfsr(int seed);
-RcppExport SEXP _randngen_lfsr(SEXP seedSEXP) {
+// lfsr_fib
+NumericVector lfsr_fib(int seed, int n);
+RcppExport SEXP _randngen_lfsr_fib(SEXP seedSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
-    rcpp_result_gen = Rcpp::wrap(lfsr(seed));
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(lfsr_fib(seed, n));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -150,7 +151,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randngen_lcg_internal", (DL_FUNC) &_randngen_lcg_internal, 2},
     {"_randngen_lcg_parkmiller", (DL_FUNC) &_randngen_lcg_parkmiller, 2},
     {"_randngen_lfg", (DL_FUNC) &_randngen_lfg, 4},
-    {"_randngen_lfsr", (DL_FUNC) &_randngen_lfsr, 1},
+    {"_randngen_lfsr_fib", (DL_FUNC) &_randngen_lfsr_fib, 2},
     {"_randngen_middlesquare", (DL_FUNC) &_randngen_middlesquare, 2},
     {"_randngen_mwc", (DL_FUNC) &_randngen_mwc, 5},
     {"_randngen_winchmann_hill", (DL_FUNC) &_randngen_winchmann_hill, 4},

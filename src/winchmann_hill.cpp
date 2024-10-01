@@ -7,7 +7,7 @@ using namespace Rcpp;
 //'
 //' The Wichmann-Hill random number generator indeed produces pseudorandom numbers that are typically in the range \eqn{\left[0, 1\right)}. It generates floating-point numbers rather than discrete integers.
 //'
-//' For more information see the \href{https://en.wikipedia.org/wiki/Wichmann%E2%80%93Hill}{Wikipedia Page}.
+//' For more information see the \href{https://en.wikipedia.org/wiki/Wichmann%E2%80%93Hill}{Wikipedia Page}
 //'
 //' @param seed1 Initial seed value.
 //' @param seed2 Initial seed value.
