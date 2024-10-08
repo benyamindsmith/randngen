@@ -19,7 +19,7 @@ winchmann_hill(seed1, seed2, seed3, n)
 The Wichmann-Hill random number generator indeed produces pseudorandom numbers that are typically in the range \eqn{\left[0, 1\right)}. It generates floating-point numbers rather than discrete integers.
 }
 \details{
-
+For more information see the \href{https://en.wikipedia.org/wiki/Wichmann–Hill}{Wikipedia Page}
 }
 \examples{
 random_numbers <- winchmann_hill(1234, 4321,5678,1000)
