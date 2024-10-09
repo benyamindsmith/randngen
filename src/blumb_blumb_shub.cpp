@@ -1,5 +1,7 @@
 #include <Rcpp.h>
 #include <math.h>
+#include "is_prime_internal.h"
+#include "gcd_internal.h"
 using namespace Rcpp;
 
 //' Blum Blum Shub (B.B.S.) Pseudorandom Number Generator
@@ -30,13 +32,34 @@ using namespace Rcpp;
 //'
 // [[Rcpp::export]]
 
- NumericVector blumb_blumb_shub(int seed, long long p, long long q, int n) {
-   // Function implementation here
-   return NumericVector(0); // Placeholder return
- }
+NumericVector blumb_blumb_shub(long long seed, long long p, long long q, int n) {
+  // Check if p and q are prime and congruent to 3 mod 4
+  if (!is_prime_internal(p) || p % 4 != 3) stop("p must be prime and congruent to 3 (mod 4).");
+  if (!is_prime_internal(q) || q % 4 != 3) stop("q must be prime and congruent to 3 (mod 4).");
+
+  // Modulus m is the product of primes p and q
+  long long m = p * q;
+
+  // Ensure seed is relatively prime to m
+  if (gcd_internal(seed, m) != 1) stop("Seed must be relatively prime to p*q.");
+
+  // Initialize vector to hold generated numbers
+  NumericVector generated_numbers(n);
+
+  // Set the initial value to seed
+  long long x = seed;
+
+  // Generate n numbers
+  for (int i = 0; i < n; ++i) {
+    x = (x * x) % m; // Square and reduce modulo m
+    generated_numbers[i] = x; // Store the generated number
+  }
+
+  return generated_numbers;
+}
 
 
 
 /*** R
-blumb_blumb_shub(42)
+blumb_blumb_shub(3, 11, 23, 100)
 */
