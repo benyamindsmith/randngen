@@ -30,3 +30,9 @@ c & \text{if } x_i = 0.
 \details{
 For more information, please see the \href{https://en.wikipedia.org/wiki/Inversive_congruential_generator}{Wikipedia Page}.
 }
+\examples{
+# Based off of Wikipedia's example
+random_numbers <- icg(5,2,3,1,10)
+# Plot numbers to see that they are random
+plot(random_numbers)
+}
