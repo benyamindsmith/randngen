@@ -7,15 +7,22 @@ cmwc <- function(seed, n) {
 
 #' Inversive Congruential Generator
 #'
-#' Inversive congruential generators are a type of non-linear congregational pseudorandom number generator which use the modular multiplicative inverse (if it exists) to generate the next number in a sequence. \br\br The standard formula for an inversive congruential generator, modulo some prime \eqn{q} is: \br \eqn{x_0 = \text{seed}, \quad x_{i+1} = \left\{ \begin{array}{ll} (a x_i^{-1} + c) \mod q & \text{if } x_i \neq 0, \\ c & \text{if } x_i = 0. \end{array} \right}
+#' Inversive congruential generators are a type of non-linear pseudorandom number generator.They use the modular multiplicative inverse (if it exists) to generate the next number in a sequence. The standard formula for an inversive congruential generator, modulo some prime \eqn{q}, is:
+#'  \deqn{
+#' x_0 = \text{seed}, \quad x_{i+1} = \left\{
+#' \begin{array}{ll}
+#' (a x_i^{-1} + c) \mod q & \text{if } x_i \neq 0, \\
+#' c & \text{if } x_i = 0.
+#' \end{array} \right.
+#' } where \eqn{x_i^{-1}} represents the modular inverse of \eqn{x_i} modulo \eqn{q}, and \eqn{a} and \eqn{c} are constants.
 #'
 #' For more information, please see the \href{https://en.wikipedia.org/wiki/Inversive_congruential_generator}{Wikipedia Page}.
 #'
-#' @param q TODO
-#' @param a TODO
-#' @param c TODO
-#' @param seed TODO
-#' @param n
+#' @param q The modulus (q > 1). This determines the range of possible values in the generated sequence. The output values will be in the range [0, q-1]. A common choice is a large prime number.
+#' @param a The multiplier used in the modular inverse step. It must be an integer and should be chosen such that `a` and `q` are coprime (i.e., gcd(a, q) = 1) for the ICG to work correctly.
+#' @param c The constant added at each step of the sequence. It is used to ensure the sequence remains pseudo-random. A common choice is to set `c` to 0, but non-zero values of `c` can also be used to shift the sequence.
+#' @param seed The initial starting value for the sequence. It must be a non-negative integer and serves as the first value from which the sequence is generated.
+#' @param n The number of random numbers to generate in the sequence.
 #'
 icg <- function(q, a, c, seed, n) {
     .Call(`_randngen_icg`, q, a, c, seed, n)
