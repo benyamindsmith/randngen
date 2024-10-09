@@ -33,7 +33,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Inversive Congruential Generator
 
-- [ ] Blumb Blumb Shub [NOT STARTED]
+- [ ] Blumb Blumb Shub [NEEDS WORK]
 
 - [ ] ACORN [NOT STARTED]
 
