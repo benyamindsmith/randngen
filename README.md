@@ -20,21 +20,21 @@ The following is a list of supported random number generators in this package.
 
 (Based off of the [this Wikipedia Page](https://en.wikipedia.org/wiki/List_of_random_number_generators))
 
-- [x] Middle Square
+- [x] Middle Square (`middlesquare(seed, n)`)
 
-- [x] Park-Miller
+- [x] Park-Miller (`lcg_parkmiller(seed, n)`)
 
-- [x] Linear Congruential Generator
+- [x] Linear Congruential Generator (`lcg(seed, n, m, a, c)`)
 
-- [x] Lagged Fibonacci Generator
+- [x] Lagged Fibonacci Generator (`lfg(n, j=65, k=71, bitsize=32)`)
 
 - [ ] Linear Feedback Shift Register [NEEDS WORK]
 
-- [x] Winchmann-Hill
+- [x] Winchmann-Hill (`winchman_hill(seed1, seed2, seed3, n)`)
 
-- [x] Inversive Congruential Generator
+- [x] Inversive Congruential Generator (`icg(q, a, c, seed,n)`)
 
-- [x] Blumb Blumb Shub 
+- [x] Blumb Blumb Shub (`blumb_blumb_shub(seed, p, q, n)`)
 
 - [ ] ACORN [NOT STARTED]
 
@@ -48,7 +48,7 @@ The following is a list of supported random number generators in this package.
 
 - [ ] KISS [NOT STARTED]
 
-- [x] Multiply-with-carry (MWC)
+- [x] Multiply-with-carry (MWC) (`mwc(seed, n, b = 4294967296, a = 7, c =4)`)
 
 - [ ] Complementary-multiply-with-carry (CMWC)  [NEEDS WORK]
 
