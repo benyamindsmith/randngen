@@ -2,23 +2,52 @@
 #include <math.h>
 using namespace Rcpp;
 
-//' Linear Feedback Shift Register
+//' Fibbonacci Linear Feedback Shift Register
 //'
 //' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
 // [[Rcpp::export]]
-NumericVector lfsr_fib(int seed, int n) {
-  return 0;
+NumericVector lfsr_fib(int seed, int n, int bitsize) {
+  NumericVector generated_numbers;
+  int x = seed;
+
+  for(int i=0; i < n; i++){
+    // NEED TO ADD CODE
+  }
+  return generated_numbers;
 }
 
-NumericVector lfsr_galois(int seed, int n){
-  return 0;
+
+//' Galois Linear Feedback Shift Register
+//'
+//' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
+// [[Rcpp::export]]
+
+NumericVector lfsr_galois(int seed, int n, int bitsize){
+  NumericVector generated_numbers;
+  int x = seed;
+
+  for(int i=0; i < n; i++){
+
+  }
+  return generated_numbers;
 }
 
-NumericVector lfsr_xorshift(int seed, int n){
-  return 0;
+//' Xorshift Linear Feedback Shift Register
+//'
+//' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
+// [[Rcpp::export]]
+
+NumericVector lfsr_xorshift(int seed, int n, int bitsize){
+  NumericVector generated_numbers;
+  int x = seed;
+
+  for(int i=0; i < n; i++){
+
+  }
+  return generated_numbers;
 }
 
 // Testing
 /*** R
-lfsr()
+lfsr_fib()
 */

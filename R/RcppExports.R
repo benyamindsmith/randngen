@@ -31,8 +31,12 @@ blumb_blumb_shub <- function(seed, p, q, n) {
     .Call(`_randngen_blumb_blumb_shub`, seed, p, q, n)
 }
 
-cmwc <- function(seed, n) {
-    .Call(`_randngen_cmwc`, seed, n)
+#' Complementary Multiply with Carry Generator
+#'
+#'
+#' Wikipedia: https://en.wikipedia.org/wiki/Multiply-with-carry_pseudorandom_number_generator#Complementary-multiply-with-carry_generators
+cmwc <- function(seed, n, r, bitsize = 32L, a = 7L, c = 4L) {
+    .Call(`_randngen_cmwc`, seed, n, r, bitsize, a, c)
 }
 
 #' Inversive Congruential Generator
@@ -145,11 +149,25 @@ lfg <- function(n, j = 65L, k = 71L, bitsize = 32L) {
     .Call(`_randngen_lfg`, n, j, k, bitsize)
 }
 
-#' Linear Feedback Shift Register
+#' Fibbonacci Linear Feedback Shift Register
 #'
 #' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
-lfsr_fib <- function(seed, n) {
-    .Call(`_randngen_lfsr_fib`, seed, n)
+lfsr_fib <- function(seed, n, bitsize) {
+    .Call(`_randngen_lfsr_fib`, seed, n, bitsize)
+}
+
+#' Galois Linear Feedback Shift Register
+#'
+#' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
+lfsr_galois <- function(seed, n, bitsize) {
+    .Call(`_randngen_lfsr_galois`, seed, n, bitsize)
+}
+
+#' Xorshift Linear Feedback Shift Register
+#'
+#' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
+lfsr_xorshift <- function(seed, n, bitsize) {
+    .Call(`_randngen_lfsr_xorshift`, seed, n, bitsize)
 }
 
 #' Middles-Square Method
