@@ -165,8 +165,8 @@ lfg <- function(n, j = 65L, k = 71L, bitsize = 32L) {
 #' The function implements a Fibonacci LFSR, where the feedback bit is computed by XOR-ing selected bits (as determined by the tap positions). The register is then shifted, and the feedback bit is inserted into the most significant position.
 #'
 #' @examples
-#' # Generate a sequence of 10 numbers using an LFSR with a 16-bit register, a seed of 12345, and tap positions at 16 and 14
-#' lfsr_fib(12345, 10, 16, c(16, 14))
+#' lfsr_fib(seed = 12345, n = 1000, bitsize = 16, taps =c(1, 3,4,6))|>
+#'  plot()
 #'
 #' @seealso \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Linear Feedback Shift Register on Wikipedia}
 #'
