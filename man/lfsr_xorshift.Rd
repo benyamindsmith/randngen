@@ -4,7 +4,7 @@
 \alias{lfsr_xorshift}
 \title{Xorshift Linear Feedback Shift Register}
 \usage{
-lfsr_xorshift(seed, n, bitsize)
+lfsr_xorshift(seed, n, bitsize, taps)
 }
 \description{
 For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.

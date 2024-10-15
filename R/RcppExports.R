@@ -149,25 +149,44 @@ lfg <- function(n, j = 65L, k = 71L, bitsize = 32L) {
     .Call(`_randngen_lfg`, n, j, k, bitsize)
 }
 
-#' Fibbonacci Linear Feedback Shift Register
+#' Fibonacci Linear Feedback Shift Register (LFSR)
 #'
-#' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
-lfsr_fib <- function(seed, n, bitsize) {
-    .Call(`_randngen_lfsr_fib`, seed, n, bitsize)
+#' This function generates a sequence of numbers using a Fibonacci Linear Feedback Shift Register (LFSR).
+#' LFSR is a shift register that produces a pseudo-random sequence of binary numbers based on the initial seed value and the feedback configuration.
+#'
+#' @param seed A large integer (64-bit) representing the initial value of the LFSR.
+#' @param n Integer specifying the number of numbers to generate.
+#' @param bitsize Integer specifying the number of bits in the LFSR. This determines the register's length.
+#' @param taps A numeric vector specifying the tap positions used to calculate the feedback bit. The values should correspond to bit positions (1-based indexing).
+#'
+#' @return A numeric vector containing the sequence of generated numbers from the LFSR.
+#'
+#' @details
+#' The function implements a Fibonacci LFSR, where the feedback bit is computed by XOR-ing selected bits (as determined by the tap positions). The register is then shifted, and the feedback bit is inserted into the most significant position.
+#'
+#' @examples
+#' # Generate a sequence of 10 numbers using an LFSR with a 16-bit register, a seed of 12345, and tap positions at 16 and 14
+#' lfsr_fib(12345, 10, 16, c(16, 14))
+#'
+#' @seealso \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Linear Feedback Shift Register on Wikipedia}
+#'
+#' @export
+lfsr_fib <- function(seed, n, bitsize, taps) {
+    .Call(`_randngen_lfsr_fib`, seed, n, bitsize, taps)
 }
 
 #' Galois Linear Feedback Shift Register
 #'
 #' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
-lfsr_galois <- function(seed, n, bitsize) {
-    .Call(`_randngen_lfsr_galois`, seed, n, bitsize)
+lfsr_galois <- function(seed, n, bitsize, taps) {
+    .Call(`_randngen_lfsr_galois`, seed, n, bitsize, taps)
 }
 
 #' Xorshift Linear Feedback Shift Register
 #'
 #' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
-lfsr_xorshift <- function(seed, n, bitsize) {
-    .Call(`_randngen_lfsr_xorshift`, seed, n, bitsize)
+lfsr_xorshift <- function(seed, n, bitsize, taps) {
+    .Call(`_randngen_lfsr_xorshift`, seed, n, bitsize, taps)
 }
 
 #' Middles-Square Method

@@ -109,41 +109,44 @@ BEGIN_RCPP
 END_RCPP
 }
 // lfsr_fib
-NumericVector lfsr_fib(int seed, int n, int bitsize);
-RcppExport SEXP _randngen_lfsr_fib(SEXP seedSEXP, SEXP nSEXP, SEXP bitsizeSEXP) {
+NumericVector lfsr_fib(long long seed, int n, int bitsize, NumericVector taps);
+RcppExport SEXP _randngen_lfsr_fib(SEXP seedSEXP, SEXP nSEXP, SEXP bitsizeSEXP, SEXP tapsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< long long >::type seed(seedSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< int >::type bitsize(bitsizeSEXP);
-    rcpp_result_gen = Rcpp::wrap(lfsr_fib(seed, n, bitsize));
+    Rcpp::traits::input_parameter< NumericVector >::type taps(tapsSEXP);
+    rcpp_result_gen = Rcpp::wrap(lfsr_fib(seed, n, bitsize, taps));
     return rcpp_result_gen;
 END_RCPP
 }
 // lfsr_galois
-NumericVector lfsr_galois(int seed, int n, int bitsize);
-RcppExport SEXP _randngen_lfsr_galois(SEXP seedSEXP, SEXP nSEXP, SEXP bitsizeSEXP) {
+NumericVector lfsr_galois(long long seed, int n, int bitsize, NumericVector taps);
+RcppExport SEXP _randngen_lfsr_galois(SEXP seedSEXP, SEXP nSEXP, SEXP bitsizeSEXP, SEXP tapsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< long long >::type seed(seedSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< int >::type bitsize(bitsizeSEXP);
-    rcpp_result_gen = Rcpp::wrap(lfsr_galois(seed, n, bitsize));
+    Rcpp::traits::input_parameter< NumericVector >::type taps(tapsSEXP);
+    rcpp_result_gen = Rcpp::wrap(lfsr_galois(seed, n, bitsize, taps));
     return rcpp_result_gen;
 END_RCPP
 }
 // lfsr_xorshift
-NumericVector lfsr_xorshift(int seed, int n, int bitsize);
-RcppExport SEXP _randngen_lfsr_xorshift(SEXP seedSEXP, SEXP nSEXP, SEXP bitsizeSEXP) {
+NumericVector lfsr_xorshift(long long seed, int n, int bitsize, NumericVector taps);
+RcppExport SEXP _randngen_lfsr_xorshift(SEXP seedSEXP, SEXP nSEXP, SEXP bitsizeSEXP, SEXP tapsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< long long >::type seed(seedSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< int >::type bitsize(bitsizeSEXP);
-    rcpp_result_gen = Rcpp::wrap(lfsr_xorshift(seed, n, bitsize));
+    Rcpp::traits::input_parameter< NumericVector >::type taps(tapsSEXP);
+    rcpp_result_gen = Rcpp::wrap(lfsr_xorshift(seed, n, bitsize, taps));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -197,9 +200,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randngen_lcg_internal", (DL_FUNC) &_randngen_lcg_internal, 2},
     {"_randngen_lcg_parkmiller", (DL_FUNC) &_randngen_lcg_parkmiller, 2},
     {"_randngen_lfg", (DL_FUNC) &_randngen_lfg, 4},
-    {"_randngen_lfsr_fib", (DL_FUNC) &_randngen_lfsr_fib, 3},
-    {"_randngen_lfsr_galois", (DL_FUNC) &_randngen_lfsr_galois, 3},
-    {"_randngen_lfsr_xorshift", (DL_FUNC) &_randngen_lfsr_xorshift, 3},
+    {"_randngen_lfsr_fib", (DL_FUNC) &_randngen_lfsr_fib, 4},
+    {"_randngen_lfsr_galois", (DL_FUNC) &_randngen_lfsr_galois, 4},
+    {"_randngen_lfsr_xorshift", (DL_FUNC) &_randngen_lfsr_xorshift, 4},
     {"_randngen_middlesquare", (DL_FUNC) &_randngen_middlesquare, 2},
     {"_randngen_mwc", (DL_FUNC) &_randngen_mwc, 5},
     {"_randngen_winchmann_hill", (DL_FUNC) &_randngen_winchmann_hill, 4},

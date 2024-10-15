@@ -4,7 +4,7 @@
 \alias{lfsr_galois}
 \title{Galois Linear Feedback Shift Register}
 \usage{
-lfsr_galois(seed, n, bitsize)
+lfsr_galois(seed, n, bitsize, taps)
 }
 \description{
 For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.

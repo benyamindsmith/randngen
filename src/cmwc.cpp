@@ -9,7 +9,6 @@ using namespace std;
 //' Wikipedia: https://en.wikipedia.org/wiki/Multiply-with-carry_pseudorandom_number_generator#Complementary-multiply-with-carry_generators
 // [[Rcpp::export]]
 
-// CODE NEEDS TO BE FIXED!!
 NumericVector cmwc(long long seed, int n, int r, int bitsize=32, int a=7, int c=4){
   NumericVector generated_numbers;
   long long x = seed;
