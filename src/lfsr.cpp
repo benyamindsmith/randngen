@@ -83,6 +83,6 @@ NumericVector lfsr_xorshift(long long seed, int n, int bitsize, NumericVector ta
 
 // Testing
 /*** R
-lfsr_fib(seed = 12345, n = 1000, bitsize = 16, taps =c(1, 3,4,6))|>
+lfsr_fib(seed = 987654310, n = 10000, bitsize = 32, taps =c(1,3, 7, 9))|>
   plot()
 */
