@@ -1,4 +1,4 @@
-# randgen <a href='https://github.com/benyamindsmith/randngen'><img src='./logo.png' align="right" height="300" /></a>    
+# randgen <a href='https://github.com/benyamindsmith/randngen'><img src='https://github.com/benyamindsmith/randngen/raw/main/logo.png' align="right" height="300" /></a>    
   <a target="_blank" href="https://discord.gg/VX3pzJyfSw"><img src="https://dcbadge.limes.pink/api/server/VX3pzJyfSw" alt="" /></a>  
 
 <!--
