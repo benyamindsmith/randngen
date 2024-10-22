@@ -25,8 +25,9 @@
 #'
 #' @examples
 #' # Example usage of the blumb_blumb_shub function
-#' blumb_blumb_shub(123456789, 11, 19, 10)
-#'
+#' random_numbers <- blumb_blumb_shub(6, 103, 563, 1000)
+#' plot(random_numbers)
+#' @export
 blumb_blumb_shub <- function(seed, p, q, n) {
     .Call(`_randngen_blumb_blumb_shub`, seed, p, q, n)
 }

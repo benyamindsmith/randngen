@@ -33,8 +33,8 @@ The generator operates as follows:
 }
 \examples{
 # Example usage of the blumb_blumb_shub function
-blumb_blumb_shub(123456789, 11, 19, 10)
-
+random_numbers <- blumb_blumb_shub(6, 103, 563, 1000)
+plot(random_numbers)
 }
 \references{
 Lenore Blum, Manuel Blum, and Michael Shub, "A Simple Unpredictable Pseudo-Random Number Generator", SIAM Journal on Computing, 1986.

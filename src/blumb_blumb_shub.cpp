@@ -28,8 +28,9 @@ using namespace Rcpp;
 //'
 //' @examples
 //' # Example usage of the blumb_blumb_shub function
-//' blumb_blumb_shub(123456789, 11, 19, 10)
-//'
+//' random_numbers <- blumb_blumb_shub(6, 103, 563, 1000)
+//' plot(random_numbers)
+//' @export
 // [[Rcpp::export]]
 
 NumericVector blumb_blumb_shub(long long seed, long long p, long long q, int n) {
@@ -61,5 +62,6 @@ NumericVector blumb_blumb_shub(long long seed, long long p, long long q, int n) 
 
 
 /*** R
-blumb_blumb_shub(3, 11, 23, 100)
+blumb_blumb_shub(6, 103, 563, 100)|>
+  plot()
 */
