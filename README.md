@@ -99,6 +99,8 @@ After building out a significant amount of random number generators and doing th
 
 ## Similar Packages and Inspiration
 
+- [The `random` C++ library](https://en.cppreference.com/w/cpp/numeric/random)
+
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
 
 - [PractRand](https://github.com/tylov-fork/PractRand)
