@@ -50,7 +50,7 @@ using namespace Rcpp;
 
 
 
-//' Galois Linear Feedback Shift Register
+//' Galois Linear Feedback Shift Register (LFSR)
 //'
 //' Named after the French mathematician Évariste Galois, an LFSR in Galois configuration, which is also known as modular, internal XORs, or one-to-many LFSR, is an alternate structure that can generate the same output stream as a conventional LFSR (but offset in time).[5] In the Galois configuration, when the system is clocked, bits that are not taps are shifted one position to the right unchanged. The taps, on the other hand, are XORed with the output bit before they are stored in the next position. The new output bit is the next input bit. The effect of this is that when the output bit is zero, all the bits in the register shift to the right unchanged, and the input bit becomes zero. When the output bit is one, the bits in the tap positions all flip (if they are 0, they become 1, and if they are 1, they become 0), and then the entire register is shifted to the right and the input bit becomes 1.
 //'
@@ -104,7 +104,7 @@ using namespace Rcpp;
  }
 
 
-//' Xorshift Linear Feedback Shift Register
+//' Xorshift Linear Feedback Shift Register (LFSR)
 //'
 //' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
 // [[Rcpp::export]]

@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{lfsr_xorshift}
 \alias{lfsr_xorshift}
-\title{Xorshift Linear Feedback Shift Register}
+\title{Xorshift Linear Feedback Shift Register (LFSR)}
 \usage{
 lfsr_xorshift(seed, n, bitsize, taps)
 }

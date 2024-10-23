@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{lfsr_galois}
 \alias{lfsr_galois}
-\title{Galois Linear Feedback Shift Register}
+\title{Galois Linear Feedback Shift Register (LFSR)}
 \usage{
 lfsr_galois(seed, n, bitsize, taps)
 }
