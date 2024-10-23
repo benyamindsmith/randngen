@@ -7,9 +7,9 @@ using namespace Rcpp;
 
 
 // Helper function to check if two numbers are relatively prime(gcd = 1)
-long long gcd_internal(long long a, long long b) {
+int gcd_internal(int a, int b) {
   while (b != 0) {
-    long long temp = b;
+    int temp = b;
     b = a % b;
     a = temp;
   }

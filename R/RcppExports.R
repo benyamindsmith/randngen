@@ -23,10 +23,14 @@
 #'
 #' @references Lenore Blum, Manuel Blum, and Michael Shub, "A Simple Unpredictable Pseudo-Random Number Generator", SIAM Journal on Computing, 1986.
 #'
+#'
 #' @examples
+#'
+#' \dontrun{
 #' # Example usage of the blumb_blumb_shub function
 #' random_numbers <- blumb_blumb_shub(6, 103, 563, 1000)
 #' plot(random_numbers)
+#' }
 #' @export
 blumb_blumb_shub <- function(seed, p, q, n) {
     .Call(`_randngen_blumb_blumb_shub`, seed, p, q, n)

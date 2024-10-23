@@ -26,20 +26,24 @@ using namespace Rcpp;
 //'
 //' @references Lenore Blum, Manuel Blum, and Michael Shub, "A Simple Unpredictable Pseudo-Random Number Generator", SIAM Journal on Computing, 1986.
 //'
+//'
 //' @examples
+//'
+//' \dontrun{
 //' # Example usage of the blumb_blumb_shub function
 //' random_numbers <- blumb_blumb_shub(6, 103, 563, 1000)
 //' plot(random_numbers)
+//' }
 //' @export
 // [[Rcpp::export]]
 
-NumericVector blumb_blumb_shub(long long seed, long long p, long long q, int n) {
+NumericVector blumb_blumb_shub(int seed, int p, int q, int n) {
   // Check if p and q are prime and congruent to 3 mod 4
   if (!is_prime_internal(p) || p % 4 != 3) stop("p must be prime and congruent to 3 (mod 4).");
   if (!is_prime_internal(q) || q % 4 != 3) stop("q must be prime and congruent to 3 (mod 4).");
 
   // Modulus m is the product of primes p and q
-  long long m = p * q;
+  int m = p * q;
 
   // Ensure seed is relatively prime to m
   if (gcd_internal(seed, m) != 1) stop("Seed must be relatively prime to p*q.");
@@ -48,7 +52,7 @@ NumericVector blumb_blumb_shub(long long seed, long long p, long long q, int n) 
   NumericVector generated_numbers(n);
 
   // Set the initial value to seed
-  long long x = seed;
+  int x = seed;
 
   // Generate n numbers
   for (int i = 0; i < n; ++i) {

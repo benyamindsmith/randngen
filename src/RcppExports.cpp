@@ -11,14 +11,14 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // blumb_blumb_shub
-NumericVector blumb_blumb_shub(long long seed, long long p, long long q, int n);
+NumericVector blumb_blumb_shub(int seed, int p, int q, int n);
 RcppExport SEXP _randngen_blumb_blumb_shub(SEXP seedSEXP, SEXP pSEXP, SEXP qSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< long long >::type seed(seedSEXP);
-    Rcpp::traits::input_parameter< long long >::type p(pSEXP);
-    Rcpp::traits::input_parameter< long long >::type q(qSEXP);
+    Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< int >::type p(pSEXP);
+    Rcpp::traits::input_parameter< int >::type q(qSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     rcpp_result_gen = Rcpp::wrap(blumb_blumb_shub(seed, p, q, n));
     return rcpp_result_gen;
