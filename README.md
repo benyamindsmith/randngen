@@ -82,6 +82,15 @@ The following is a list of supported random number generators in this package.
 
 - [ ] Squares RNG  [NOT STARTED]
 
+- [ ] L'Ecuyer-CMRG [NOT STARTED]
+
+- [ ] Marsaglia-Multicarry [NOT STARTED]
+
+- [ ] Knuth-TAOCP-2002 [NOT STARTED]
+
+- [ ] Knuth-TAOCP [NOT STARTED
+
+
 ## Contributing
 
 Since this project is very much in its infancy, there is alot of opportunity to contribute! Some areas include
@@ -98,6 +107,8 @@ To get involved, feel free to open up and issue and submit a PR.
 After building out a significant amount of random number generators and doing the appropriate documentation. Next steps would be to either a utility package or a suite of functions within this package that will implement [Diehard tests](https://en.wikipedia.org/wiki/Diehard_tests) and [TestU1 tests](https://en.wikipedia.org/wiki/TestU01).
 
 ## Similar Packages and Inspiration
+
+- [The `PRNG` R package](https://cran.r-project.org/web/packages/PRNG/PRNG.pdf)
 
 - [The `random` C++ library](https://en.cppreference.com/w/cpp/numeric/random)
 

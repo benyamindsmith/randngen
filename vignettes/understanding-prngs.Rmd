@@ -1,0 +1,53 @@
+---
+title: "Why use randngen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{understanding-prngs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(randngen)
+```
+
+
+# Introduction
+
+Pseudo-random number generators power power much of what goes on "behind the scenes" in statistical and cryptographic settings. In `R`, there is a pseudo-random number generator present which allows users to generate random variables from a variety of distributions. To check the default PRNG used by your `R` version you can run the following: 
+
+```{r}
+# Using version 4.2.2 (at time of writing)
+
+RNGkind()
+```
+
+
+The PRNG which R utilizes can be specified by specifying a `.Random.seed` argument in the beginning of the R script or by adjusting the default `kind` (and `normal.kind` and `sample.kind`) arguments in the `RNGkind` or `set.seed` argument. 
+
+While it is possible for one to utilize their own PRNG through use of user-supplied random number generation, such an approach is pedagogically complex and for users interested in working with random number generation and still leaves abstraction around how random numbers are generated from the seed and parameters supplied. 
+
+<!--
+Need to write what randngen does
+--->
+
+<!--
+# From PRNG to Uniform Random Variables (and beyond!)
+--->
+
+# References
+
+1. Random function - RDocumentation. https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Random.
+
+2. Morris, T. P., White, I. R. & Crowther, M. J. Using simulation studies to evaluate statistical methods. Statistics in Medicine 38, 2074–2102 (2019).
+
+3. Generating distributions from random number generators. Cross Validated https://stats.stackexchange.com/questions/637706/generating-distributions-from-random-number-generators.
+
+4. L’Ecuyer, P. & Simard, R. TestU01. ACM Transactions on Mathematical Software 33, 1–40 (2007).
