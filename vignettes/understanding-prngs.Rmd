@@ -21,26 +21,43 @@ library(randngen)
 
 # Introduction
 
-Pseudo-random number generators power power much of what goes on "behind the scenes" in statistical and cryptographic settings. In `R`, there is a pseudo-random number generator present which allows users to generate random variables from a variety of distributions. To check the default PRNG used by your `R` version you can run the following: 
+Pseudo-random number generators (PRNGs) power much of what goes on "behind the scenes" in statistical and cryptographic settings. In `R`, there is a pseudo-random number generator present which allows users to generate random variables from a variety of distributions. To check the default PRNG used by your `R` version you can run the following: 
 
 ```{r}
 # Using version 4.2.2 (at time of writing)
+# Returns the methods used for
+# 1. The "default" random number generation, 
+# 2. Normal variable generation 
+# 3. Discrete uniform variable generation
 
 RNGkind()
 ```
 
 
-The PRNG which R utilizes can be specified by specifying a `.Random.seed` argument in the beginning of the R script or by adjusting the default `kind` (and `normal.kind` and `sample.kind`) arguments in the `RNGkind` or `set.seed` argument. 
+The PRNG which R utilizes can be specified by specifying a `.Random.seed` argument in the beginning of an R script or by adjusting the default `kind` (and `normal.kind` and `sample.kind`) arguments in the `RNGkind` or `set.seed` argument. 
 
-While it is possible for one to utilize their own PRNG through use of user-supplied random number generation, such an approach is pedagogically complex and for users interested in working with random number generation and still leaves abstraction around how random numbers are generated from the seed and parameters supplied. 
+While it is possible for one to utilize their own PRNG through use of user-supplied random number generation, such an approach is pedagogically complex. For users interested in working with and learning about random number generation, present tools available still leave a degree of complexity and/or mystery around how random numbers are generated from the seed(s) and parameters supplied to a given PRNG. The `randngen` package provides a suite of PRNGs to which aim to be easy to use and flexible for understanding the relevant maths and algorithms implemented by allowing users to specify all relevant parameters. 
 
-<!--
-Need to write what randngen does
---->
 
-<!--
 # From PRNG to Uniform Random Variables (and beyond!)
---->
+
+```{r}
+library(randngen)
+
+range01 <- function(x){(x-min(x))/(max(x)-min(x))}
+
+
+randngen::lcg(seed = 1234, n=10000)|>
+  range01()|>
+  hist()
+```
+
+```{r}
+set.seed(1234)
+runif(10000)|>
+  hist()
+```
+
 
 # References
 

@@ -88,8 +88,9 @@ The following is a list of supported random number generators in this package.
 
 - [ ] Knuth-TAOCP-2002 [NOT STARTED]
 
-- [ ] Knuth-TAOCP [NOT STARTED
+- [ ] Knuth-TAOCP [NOT STARTED]
 
+- [ ] Rule 30 [NOT STARTED]
 
 ## Contributing
 
