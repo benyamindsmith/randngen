@@ -44,18 +44,19 @@ While it is possible for one to utilize their own PRNG through use of user-suppl
 ```{r}
 library(randngen)
 
+# Function from here: https://stackoverflow.com/questions/5468280/scale-a-series-between-two-points
 range01 <- function(x){(x-min(x))/(max(x)-min(x))}
 
 
 randngen::lcg(seed = 1234, n=10000)|>
   range01()|>
-  hist()
+  hist(main= "0-1 Scaled Uniform Random Variables with randgen::lcg()")
 ```
 
 ```{r}
 set.seed(1234)
 runif(10000)|>
-  hist()
+  hist(main= "0-1 Uniform Random Variables with runif()")
 ```
 
 
