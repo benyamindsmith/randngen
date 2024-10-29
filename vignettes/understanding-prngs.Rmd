@@ -59,6 +59,26 @@ runif(10000)|>
   hist(main= "0-1 Uniform Random Variables with runif()")
 ```
 
+## Applying the Inverse Probability Transform to Generate Random Variables
+
+<!--
+Define Inverse Probability Transform. Make POC with qnorm
+--->
+```{r}
+library(randngen)
+
+randngen::lcg(seed = 1234, n=10000)|>
+  range01()|>
+  qnorm()|>
+  hist(main= "Normal(0,1) Random Variables using\nscaled randgen::lcg() values and qnorm()")
+```
+
+```{r}
+set.seed(1234)
+runif(10000)|>
+  qnorm()|>
+  hist(main= "Normal(0,1) Random Variables using runif() and qnorm()")
+```
 
 # References
 
