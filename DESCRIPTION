@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Benjamin Smith
 Maintainer: Benjamin Smith <benyamindsmith@gmail.com>
 Description: This package aims to be a comprensive package of all possible random number generators. 
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp
