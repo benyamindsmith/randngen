@@ -11,7 +11,7 @@ lcg(seed, n, m = 65537L, a = 75L, c = 74L)
 
 \item{n}{the number of random numbers you want to create.}
 
-\item{m}{modulus argument. By default, \eqn{m = 2^16  + 1} (follows ZX81 configuration)}
+\item{m}{modulus argument. By default, \eqn{m = 2^{16}  + 1} (follows ZX81 configuration)}
 
 \item{a}{multiplier argument. By default, \eqn{a = 75} (follows ZX81 configuration)}
 

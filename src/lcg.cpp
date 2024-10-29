@@ -22,7 +22,7 @@ using namespace Rcpp;
 //'
 //' @param seed initial starting value
 //' @param n the number of random numbers you want to create.
-//' @param m modulus argument. By default, \eqn{m = 2^16  + 1} (follows ZX81 configuration)
+//' @param m modulus argument. By default, \eqn{m = 2^{16}  + 1} (follows ZX81 configuration)
 //' @param a multiplier argument. By default, \eqn{a = 75} (follows ZX81 configuration)
 //' @param c increment argument By default, \eqn{c = 74} (follows ZX81 configuration)
 //' @examples
