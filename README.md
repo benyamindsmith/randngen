@@ -7,7 +7,7 @@ This is some text
 --->
 A opinionated R library of pseudo-random number generators written in C++.
 
-This package aims to be comprehensive with having all popular and emerging random number generators. This package can be used for research and to explore the properties of random number generators as well. 
+This package aims to be comprehensive with having all popular and emerging random number generators. This package can be used for research and for exploring the properties of random number generators as well. 
 
 ## Installing this Package
 
