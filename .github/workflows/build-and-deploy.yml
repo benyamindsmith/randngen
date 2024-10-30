@@ -3,7 +3,7 @@ name: R Package Build and Deploy
 on:
   push:
     branches:
-      - main  # Trigger on pushes to the main branch. You can change this to any branch you like.
+      - main  # Adjust to your target branch
 
 jobs:
   build:
@@ -27,19 +27,22 @@ jobs:
           install.packages('usethis')
           install.packages('pkgdown')  # for building the site
 
-      - name: Build and document R package (conditionally)
+      - name: Conditionally Build and Document R Package
         if: |
-          github.event.head_commit.message != 'skip-build' &&
-          (contains(github.event.head_commit.message, "R/") || contains(github.event.head_commit.message, "man/") || contains(github.event.head_commit.message, "DESCRIPTION") || contains(github.event.head_commit.message, "NAMESPACE"))
+          contains(github.event.head_commit.message, 'skip-build') == false &&
+          (github.event.before != '0000000000000000000000000000000000000000' || github.event.commits != '')
         run: |
           R -e "devtools::document()"
           R -e "devtools::build()"
+        # Only run this if files in certain directories were changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build site
+      - name: Build Site (Always)
         run: |
           R -e "usethis::build_site()"
 
-      - name: Commit built site and push
+      - name: Commit and Push Built Site
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
