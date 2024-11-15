@@ -113,6 +113,10 @@ After building out a significant amount of random number generators and doing th
 
 - [The `PRNG` R package](https://cran.r-project.org/web/packages/PRNG/PRNG.pdf)
 
+- [The `miranda` R package](https://github.com/coolbutuseless/miranda)
+
+- [The `dqrng` R package](https://github.com/daqana/dqrng)
+
 - [The `random` C++ library](https://en.cppreference.com/w/cpp/numeric/random)
 
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
