@@ -4,16 +4,21 @@
 \alias{lfg}
 \title{Lagged Fibonacci Generator (LFG)}
 \usage{
-lfg(n, j = 65L, k = 71L, bitsize = 32L)
+lfg(n, j = 24L, k = 55L, bitsize = 32L, operation = "+")
 }
 \arguments{
-\item{j}{\eqn{j} value specified. Note \eqn{0 < j <k}.}
+\item{n}{Number of random numbers to generate.}
 
-\item{k}{\eqn{k} value specified. Note \eqn{0 < j <k}.}
+\item{j}{Lag parameter j (0 < j < k).}
 
-\item{bitsize}{maximum number of bits got \eqn{m}}
+\item{k}{Lag parameter k (j < k).}
 
-\item{int}{n number of random numbers to generate.}
+\item{bitsize}{Bit size for modulo (m = 2^bitsize).}
+
+\item{operation}{Character representing the operation: '+', '-', '*', '^' (XOR).}
+}
+\value{
+NumericVector of generated values.
 }
 \description{
 A Lagged Fibbonacci Generator (LFG or sometimes LFib) is an example of a pseudorandom number generator. This class of pseudorandom number generator is aimed at being an improvment of the 'standard' linear congruential generator.  These are based on the generalization of the Fibbonacci sequence.\cr\cr
@@ -27,7 +32,7 @@ In which case, the new term is some combination of any two previous terms. m is 
 For more information, see the \href{https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator}{Wikipedia page}.
 }
 \examples{
-random_numbers <- lfg(10000)
-# Plot numbers to see that they are random
-plot(random_numbers)
+plot(
+lfg(10000,j=7083 ,k=19937, bitsize=32, operation = '^')
+  )
 }

@@ -15,50 +15,86 @@ using namespace Rcpp;
 //'
 //' For more information, see the \href{https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator}{Wikipedia page}.
 //'
-//' @param int n number of random numbers to generate.
-//' @param j \eqn{j} value specified. Note \eqn{0 < j <k}.
-//' @param k  \eqn{k} value specified. Note \eqn{0 < j <k}.
-//' @param bitsize maximum number of bits got \eqn{m}
+//' @param n Number of random numbers to generate.
+//' @param j Lag parameter j (0 < j < k).
+//' @param k Lag parameter k (j < k).
+//' @param bitsize Bit size for modulo (m = 2^bitsize).
+//' @param operation Character representing the operation: '+', '-', '*', '^' (XOR).
+//' @return NumericVector of generated values.
 //' @examples
-//' random_numbers <- lfg(10000)
-//' # Plot numbers to see that they are random
-//' plot(random_numbers)
+//' plot(
+//' lfg(10000,j=7083 ,k=19937, bitsize=32, operation = '^')
+//'   )
 //' @export
-//[[Rcpp::export]]
+// [[Rcpp::export]]
 
-NumericVector lfg(int n, int j = 65, int k = 71, int bitsize=32) {
+ NumericVector lfg(int n, int j = 24, int k = 55, int bitsize = 32, char operation = '+') {
 
-  // ensure that k > j > 0
-  if (j <= 0 || k <= 0 || k <= j) {
-    stop("Invalid lag values: ensure that 0 < j < k.");
-  }
+   if (j <= 0 || k <= 0 || k <= j) {
+     stop("Invalid lag values: ensure that 0 < j < k.");
+   }
 
-  // initialize the seed vector
-  NumericVector fib_series(k);
-  fib_series[0] = 0;
-  fib_series[1] = 1;
+   uint64_t m = (1ULL << bitsize);  // modulus: 2^bitsize
 
-  for (int i = 2; i < k; ++i) {
-    fib_series[i] = (fib_series[i - 1] + fib_series[i - 2]);
-  }
+   // Initialize seed values with basic Fibonacci-like sequence
+   NumericVector state(k);
+   state[0] = 1;
+   state[1] = 1;
+   for (int i = 2; i < k; ++i) {
+     state[i] = fmod(state[i - 1] + state[i - 2], m);
+   }
 
-  // Initialize the output vector
-  NumericVector lfg_numbers(n);
-  lfg_numbers[0] = fib_series[k-k+1];
-  lfg_numbers[1] = fib_series[k-j];
-  // Generate the numbers using the LFG algorithm
-  for(int i = 2; i < n; ++i) {
-   lfg_numbers[i] = fmod(lfg_numbers[i-1] + lfg_numbers[i-2], pow(2,bitsize));
-  }
+   NumericVector result(n);
 
-  return lfg_numbers;
-}
+   // Copy initial k values to result
+   for (int i = 0; i < k && i < n; ++i) {
+     result[i] = state[i];
+   }
+
+   // Generate new values
+   for (int i = k; i < n; ++i) {
+     double x = result[i - j];
+     double y = result[i - k];
+     double val = 0;
+
+     switch (operation) {
+     case '+':
+       val = fmod(x + y, m);
+       break;
+     case '-':
+       val = fmod(x - y + m, m);  // ensure non-negative
+       break;
+     case '*': {
+         uint64_t x_int = static_cast<uint64_t>(x);
+         uint64_t y_int = static_cast<uint64_t>(y);
+         uint64_t result_int = (x_int * y_int) % m;
+         val = static_cast<double>(result_int);
+         break;
+       }
+     case '^':  // XOR using integers
+       val = static_cast<double>((static_cast<uint64_t>(x) ^ static_cast<uint64_t>(y)) % m);
+       break;
+     default:
+       stop("Unsupported operation. Use '+', '-', '*', or '^' for XOR.");
+     }
+
+     result[i] = val;
+   }
+
+   return result;
+ }
+
 
 // Testing
 /*** R
 plot(
-lfg(10000, bitsize=32)
+  lfg(10000,j=7083 ,k=19937, bitsize=32, operation = '^')
 )
+
+plot(
+  lfg(10000,j=7083 ,k=19937, bitsize=32, operation = '-')
+)
+
 */
 
 

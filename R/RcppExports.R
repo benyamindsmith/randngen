@@ -141,17 +141,19 @@ lcg_parkmiller <- function(seed, n) {
 #'
 #' For more information, see the \href{https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator}{Wikipedia page}.
 #'
-#' @param int n number of random numbers to generate.
-#' @param j \eqn{j} value specified. Note \eqn{0 < j <k}.
-#' @param k  \eqn{k} value specified. Note \eqn{0 < j <k}.
-#' @param bitsize maximum number of bits got \eqn{m}
+#' @param n Number of random numbers to generate.
+#' @param j Lag parameter j (0 < j < k).
+#' @param k Lag parameter k (j < k).
+#' @param bitsize Bit size for modulo (m = 2^bitsize).
+#' @param operation Character representing the operation: '+', '-', '*', '^' (XOR).
+#' @return NumericVector of generated values.
 #' @examples
-#' random_numbers <- lfg(10000)
-#' # Plot numbers to see that they are random
-#' plot(random_numbers)
+#' plot(
+#' lfg(10000,j=7083 ,k=19937, bitsize=32, operation = '^')
+#'   )
 #' @export
-lfg <- function(n, j = 65L, k = 71L, bitsize = 32L) {
-    .Call(`_randngen_lfg`, n, j, k, bitsize)
+lfg <- function(n, j = 24L, k = 55L, bitsize = 32L, operation = '+') {
+    .Call(`_randngen_lfg`, n, j, k, bitsize, operation)
 }
 
 #' Fibonacci Linear Feedback Shift Register (LFSR)
