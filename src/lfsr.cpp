@@ -122,9 +122,9 @@ NumericVector lfsr_xorshift(long long seed, int n, int bitsize, NumericVector ta
 
 // Testing
 /*** R
-lfsr_galois(seed = 1531, n = 1000, bitsize = 16, taps =c(16, 14,13,11))|>
+lfsr_galois(seed = 225, n = 1000, bitsize = 32, taps =c(16, 14,13,11))|>
 plot(main = "Galois LFSR")
 
-lfsr_fib(seed = 1531, n = 1000, bitsize = 16, taps =c(16, 14,13,11))|>
+lfsr_fib(seed = 225, n = 1000, bitsize = 16, taps =c(16, 14,13,11))|>
   plot(main = "Fibbonacci LFSR")
 */

@@ -28,7 +28,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Linear Congruential Generator (`lcg(seed, n, m, a, c)`)
 
-- [x] Lagged Fibonacci Generator (`lfg(n, j=65, k=71, bitsize=32)`)
+- [x] Lagged Fibonacci Generator (`lfg(n, j=65, k=71, bitsize=32, operation = '+')`)
 
 - [ ] Linear Feedback Shift Register [NEEDS WORK]
 

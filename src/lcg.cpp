@@ -46,5 +46,5 @@ NumericVector lcg(int seed, int n,  long long m  = 65537,  long long a = 75,   l
 }
 
 /*** R
-lcg(123,10)
+lcg(123,1900) |> plot()
 */
