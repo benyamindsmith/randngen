@@ -38,7 +38,6 @@ static inline uint64_t get_tsc() {
    uint64_t x = get_tsc();
    long long a = 6364136223846793005;
    long long c = 1442695040888963407;
-   // preallocate result
    NumericVector generated_numbers;
    for (int i = 0; i < n; ++i) {
      x = a * x + c;    // 64-bit overflow == mod 2^64
