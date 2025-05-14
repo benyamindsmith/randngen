@@ -29,6 +29,7 @@ using namespace Rcpp;
 //' random_numbers <- lcg(1234, 1000)
 //' # Plot numbers to see that they are random
 //' plot(random_numbers)
+//' @seealso \code{\link{lcg_tos}}
 //' @export
 // [[Rcpp::export]]
 
@@ -46,5 +47,5 @@ NumericVector lcg(int seed, int n,  long long m  = 65537,  long long a = 75,   l
 }
 
 /*** R
-lcg(123,1900) |> plot()
+lcg(123,10000) |> plot()
 */

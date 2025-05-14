@@ -178,6 +178,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// lcg_tos
+NumericVector lcg_tos(int n);
+RcppExport SEXP _randngen_lcg_tos(SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(lcg_tos(n));
+    return rcpp_result_gen;
+END_RCPP
+}
 // winchmann_hill
 NumericVector winchmann_hill(int seed1, int seed2, int seed3, int n);
 RcppExport SEXP _randngen_winchmann_hill(SEXP seed1SEXP, SEXP seed2SEXP, SEXP seed3SEXP, SEXP nSEXP) {
@@ -206,6 +217,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randngen_lfsr_xorshift", (DL_FUNC) &_randngen_lfsr_xorshift, 4},
     {"_randngen_middlesquare", (DL_FUNC) &_randngen_middlesquare, 2},
     {"_randngen_mwc", (DL_FUNC) &_randngen_mwc, 5},
+    {"_randngen_lcg_tos", (DL_FUNC) &_randngen_lcg_tos, 1},
     {"_randngen_winchmann_hill", (DL_FUNC) &_randngen_winchmann_hill, 4},
     {NULL, NULL, 0}
 };

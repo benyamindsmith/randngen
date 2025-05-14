@@ -40,3 +40,6 @@ random_numbers <- lcg(1234, 1000)
 # Plot numbers to see that they are random
 plot(random_numbers)
 }
+\seealso{
+\code{\link{lcg_tos}}
+}
