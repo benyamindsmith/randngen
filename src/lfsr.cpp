@@ -105,8 +105,10 @@ using namespace Rcpp;
 
 
 //' Xorshift Linear Feedback Shift Register (LFSR)
+//' Xorshift random number generators, also called shift-register generators, are a class of pseudorandom number generators that were invented by George Marsaglia.[1] They are a subset of linear-feedback shift registers (LFSRs) which allow a particularly efficient implementation in software without the excessive use of sparse polynomials.[2] They generate the next number in their sequence by repeatedly taking the exclusive or of a number with a bit-shifted version of itself. This makes execution extremely efficient on modern computer architectures, but it does not benefit efficiency in a hardware implementation. Like all LFSRs, the parameters have to be chosen very carefully in order to achieve a long period.[3]
 //'
-//' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
+//' For execution in software, xorshift generators are among the fastest PRNGs, requiring very small code and state. However, they do not pass every statistical test without further refinement. This weakness is amended by combining them with a non-linear function, as described in the original paper. Because plain xorshift generators (without a non-linear step) fail some statistical tests, they have been accused of being unreliable.360
+//' For more information, check out the \href{https://en.wikipedia.org/wiki/Xorshift}{Wikipedia Page}.
 // [[Rcpp::export]]
 
 NumericVector lfsr_xorshift(long long seed, int n, int bitsize, NumericVector taps){
@@ -122,9 +124,9 @@ NumericVector lfsr_xorshift(long long seed, int n, int bitsize, NumericVector ta
 
 // Testing
 /*** R
-lfsr_galois(seed = 225, n = 1000, bitsize = 32, taps =c(16, 14,13,11))|>
+lfsr_galois(seed = 51966, n = 1000, bitsize = 32, taps =c(16, 14,13,11))|>
 plot(main = "Galois LFSR")
 
-lfsr_fib(seed = 225, n = 1000, bitsize = 16, taps =c(16, 14,13,11))|>
+lfsr_fib(seed = 51966, n = 1000, bitsize = 32, taps =c(16, 14,13, 11))|>
   plot(main = "Fibbonacci LFSR")
 */
