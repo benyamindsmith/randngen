@@ -1,0 +1,52 @@
+#include <Rcpp.h>
+using namespace Rcpp;
+
+//' Xorshift Random Number Generators
+//'
+//' Xorshift random number generators, also called shift-register generators, are a class of pseudorandom number generators that were invented by George Marsaglia.They are a subset of linear-feedback shift registers (LFSRs) which allow a particularly efficient implementation in software without the excessive use of sparse polynomials. They generate the next number in their sequence by repeatedly taking the exclusive or of a number with a bit-shifted version of itself. This makes execution extremely efficient on modern computer architectures, but it does not benefit efficiency in a hardware implementation. Like all LFSRs, the parameters have to be chosen very carefully in order to achieve a long period.
+//'
+//' For execution in software, xorshift generators are among the fastest PRNGs, requiring very small code and state. However, they do not pass every statistical test without further refinement. This weakness is amended by combining them with a non-linear function, as described in the original paper. Because plain xorshift generators (without a non-linear step) fail some statistical tests, they have been accused of being unreliable.
+//'
+//' For more information, check out the \href{https://en.wikipedia.org/wiki/Xorshift}{Wikipedia Page}, \href{}{George Marsaglia's paper} and \href{this StackOverflow post}{https://stackoverflow.com/questions/71522815/why-does-the-xorshift-random-number-generator-always-seem-to-use-these-specific}
+//' @name xorshift
+ // [[Rcpp::export]]
+
+ NumericVector xorshift_32(long seed, int n){
+   NumericVector generated_numbers;
+   long long x = seed;
+
+   for(int i=0; i < n; i++){
+     x ^= x << 13;
+     x ^= x >> 17;
+     x ^= x << 5;
+
+     generated_numbers.push_back(x);
+   }
+   return generated_numbers;
+ }
+
+
+//' @rdname xorshift
+// [[Rcpp::export]]
+
+ NumericVector xorshift_64(long long seed, int n){
+   NumericVector generated_numbers;
+   long long x = seed;
+
+   for(int i=0; i < n; i++){
+     x ^= x << 13;
+     x ^= x >> 7;
+     x ^= x << 17;
+
+     generated_numbers.push_back(x);
+   }
+   return generated_numbers;
+ }
+
+/*** R
+xorshift_32(seed = 51966, n = 10000)|>
+  plot(main = "Xorshift 32")
+
+xorshift_64(seed = 51966, n = 10000)|>
+  plot(main = "Xorshift 64")
+*/

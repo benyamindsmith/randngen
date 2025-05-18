@@ -205,13 +205,6 @@ lfsr_galois <- function(seed, n, bitsize, taps) {
     .Call(`_randngen_lfsr_galois`, seed, n, bitsize, taps)
 }
 
-#' Xorshift Linear Feedback Shift Register (LFSR)
-#'
-#' For more information, check out the \href{https://en.wikipedia.org/wiki/Linear-feedback_shift_register}{Wikipedia Page}.
-lfsr_xorshift <- function(seed, n, bitsize, taps) {
-    .Call(`_randngen_lfsr_xorshift`, seed, n, bitsize, taps)
-}
-
 #' Middles-Square Method
 #'
 #' The middle-square method is a method for generating pseudorandom numbers. In practice it is highly flawed for many practical purposes. Its period is usually very short and it possesses some severe weaknesses. Repeated enough times, the middle-square method will either begin repeatedly generating the same number or cycle to the previous number in a sequence and loop indefinitely.
@@ -296,5 +289,22 @@ lcg_tos <- function(n = 1L) {
 #' @export
 winchmann_hill <- function(seed1, seed2, seed3, n) {
     .Call(`_randngen_winchmann_hill`, seed1, seed2, seed3, n)
+}
+
+#' Xorshift Random Number Generators
+#'
+#' Xorshift random number generators, also called shift-register generators, are a class of pseudorandom number generators that were invented by George Marsaglia.They are a subset of linear-feedback shift registers (LFSRs) which allow a particularly efficient implementation in software without the excessive use of sparse polynomials. They generate the next number in their sequence by repeatedly taking the exclusive or of a number with a bit-shifted version of itself. This makes execution extremely efficient on modern computer architectures, but it does not benefit efficiency in a hardware implementation. Like all LFSRs, the parameters have to be chosen very carefully in order to achieve a long period.
+#'
+#' For execution in software, xorshift generators are among the fastest PRNGs, requiring very small code and state. However, they do not pass every statistical test without further refinement. This weakness is amended by combining them with a non-linear function, as described in the original paper. Because plain xorshift generators (without a non-linear step) fail some statistical tests, they have been accused of being unreliable.
+#'
+#' For more information, check out the \href{https://en.wikipedia.org/wiki/Xorshift}{Wikipedia Page}, \href{}{George Marsaglia's paper} and \href{this StackOverflow post}{https://stackoverflow.com/questions/71522815/why-does-the-xorshift-random-number-generator-always-seem-to-use-these-specific}
+#' @name xorshift
+xorshift_32 <- function(seed, n) {
+    .Call(`_randngen_xorshift_32`, seed, n)
+}
+
+#' @rdname xorshift
+xorshift_64 <- function(seed, n) {
+    .Call(`_randngen_xorshift_64`, seed, n)
 }
 

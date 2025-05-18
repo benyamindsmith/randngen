@@ -137,20 +137,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// lfsr_xorshift
-NumericVector lfsr_xorshift(long long seed, int n, int bitsize, NumericVector taps);
-RcppExport SEXP _randngen_lfsr_xorshift(SEXP seedSEXP, SEXP nSEXP, SEXP bitsizeSEXP, SEXP tapsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< long long >::type seed(seedSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< int >::type bitsize(bitsizeSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type taps(tapsSEXP);
-    rcpp_result_gen = Rcpp::wrap(lfsr_xorshift(seed, n, bitsize, taps));
-    return rcpp_result_gen;
-END_RCPP
-}
 // middlesquare
 NumericVector middlesquare(int seed, int n);
 RcppExport SEXP _randngen_middlesquare(SEXP seedSEXP, SEXP nSEXP) {
@@ -203,6 +189,30 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// xorshift_32
+NumericVector xorshift_32(long seed, int n);
+RcppExport SEXP _randngen_xorshift_32(SEXP seedSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< long >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(xorshift_32(seed, n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// xorshift_64
+NumericVector xorshift_64(long long seed, int n);
+RcppExport SEXP _randngen_xorshift_64(SEXP seedSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< long long >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(xorshift_64(seed, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_randngen_blumb_blumb_shub", (DL_FUNC) &_randngen_blumb_blumb_shub, 4},
@@ -214,11 +224,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randngen_lfg", (DL_FUNC) &_randngen_lfg, 5},
     {"_randngen_lfsr_fib", (DL_FUNC) &_randngen_lfsr_fib, 4},
     {"_randngen_lfsr_galois", (DL_FUNC) &_randngen_lfsr_galois, 4},
-    {"_randngen_lfsr_xorshift", (DL_FUNC) &_randngen_lfsr_xorshift, 4},
     {"_randngen_middlesquare", (DL_FUNC) &_randngen_middlesquare, 2},
     {"_randngen_mwc", (DL_FUNC) &_randngen_mwc, 5},
     {"_randngen_lcg_tos", (DL_FUNC) &_randngen_lcg_tos, 1},
     {"_randngen_winchmann_hill", (DL_FUNC) &_randngen_winchmann_hill, 4},
+    {"_randngen_xorshift_32", (DL_FUNC) &_randngen_xorshift_32, 2},
+    {"_randngen_xorshift_64", (DL_FUNC) &_randngen_xorshift_64, 2},
     {NULL, NULL, 0}
 };
 

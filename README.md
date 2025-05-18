@@ -30,7 +30,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Lagged Fibonacci Generator (`lfg(n, j=65, k=71, bitsize=32, operation = '+')`)
 
-- [ ] Linear Feedback Shift Register [NEEDS WORK]
+- [x] Linear Feedback Shift Register (`lfsr_fibbonacci(seed, n, bitsize, taps)` & `lfsr_galois(seed, n, bitsize, taps)`)
 
 - [x] Winchmann-Hill (`winchman_hill(seed1, seed2, seed3, n)`)
 
@@ -56,7 +56,7 @@ The following is a list of supported random number generators in this package.
 
 - [ ] Mersenne Twister (MT)  [NOT STARTED]
 
-- [ ] Xorshift  [NOT STARTED]
+- [ ] Xorshift  [IN PROGRESS]
 
 - [ ] Well equidistributed long-period linear (WELL)  [NOT STARTED]
 
