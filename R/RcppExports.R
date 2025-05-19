@@ -137,8 +137,8 @@ lcg_parkmiller <- function(seed, n) {
 #' The Fibonacci sequence may be described by the recurrence relation:\cr\cr
 #' \eqn{S_n = S_{n-1}+S_{n-2}}\cr\cr
 #' Hence, the new term is the sum of the last two terms in the sequence This can be generalized by the sequence:\cr\cr
-#' \eqn{S_n \eqiv S_{n-j} \star S_{n-k} \space (\text{mod }m), 0 < j <k}\cr\cr
-#' In which case, the new term is some combination of any two previous terms. m is usually a power of 2 (m = 2M), often 232 or 264. The  \star operator denotes a general binary operation. This may be either addition, subtraction, multiplication, or the bitwise exclusive-or operator (XOR). In this package, the \star operator denotes addition.The theory of this type of generator is rather complex, and it may not be sufficient simply to choose random values for j and k. These generators also tend to be very sensitive to initialisation.
+#' \eqn{S_n  \equiv S_{n-j} \ast S_{n-k} \space (\text{mod }m), 0 < j <k}\cr\cr
+#' In which case, the new term is some combination of any two previous terms. m is usually a power of 2 (m = 2M), often 232 or 264. The  \eqn{\ast} operator denotes a general binary operation. This may be either addition, subtraction, multiplication, or the bitwise exclusive-or operator (XOR). In this package, the \eqn{\ast} operator denotes addition.The theory of this type of generator is rather complex, and it may not be sufficient simply to choose random values for j and k. These generators also tend to be very sensitive to initialisation.
 #'
 #' For more information, see the \href{https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator}{Wikipedia page}.
 #'
@@ -185,7 +185,7 @@ lfsr_fib <- function(seed, n, bitsize, taps) {
 
 #' Galois Linear Feedback Shift Register (LFSR)
 #'
-#' Named after the French mathematician Évariste Galois, an LFSR in Galois configuration, which is also known as modular, internal XORs, or one-to-many LFSR, is an alternate structure that can generate the same output stream as a conventional LFSR (but offset in time).[5] In the Galois configuration, when the system is clocked, bits that are not taps are shifted one position to the right unchanged. The taps, on the other hand, are XORed with the output bit before they are stored in the next position. The new output bit is the next input bit. The effect of this is that when the output bit is zero, all the bits in the register shift to the right unchanged, and the input bit becomes zero. When the output bit is one, the bits in the tap positions all flip (if they are 0, they become 1, and if they are 1, they become 0), and then the entire register is shifted to the right and the input bit becomes 1.
+#' Named after the French mathematician Évariste Galois, an LFSR in Galois configuration, which is also known as modular, internal XORs, or one-to-many LFSR, is an alternate structure that can generate the same output stream as a conventional LFSR (but offset in time). In the Galois configuration, when the system is clocked, bits that are not taps are shifted one position to the right unchanged. The taps, on the other hand, are XORed with the output bit before they are stored in the next position. The new output bit is the next input bit. The effect of this is that when the output bit is zero, all the bits in the register shift to the right unchanged, and the input bit becomes zero. When the output bit is one, the bits in the tap positions all flip (if they are 0, they become 1, and if they are 1, they become 0), and then the entire register is shifted to the right and the input bit becomes 1.
 #'
 #' @param seed Initial seed for the LFSR. This will be the starting state of the LFSR.
 #' @param n Number of random numbers to generate.
@@ -299,11 +299,13 @@ winchmann_hill <- function(seed1, seed2, seed3, n) {
 #'
 #' For more information, check out the \href{https://en.wikipedia.org/wiki/Xorshift}{Wikipedia Page}, \href{}{George Marsaglia's paper} and \href{this StackOverflow post}{https://stackoverflow.com/questions/71522815/why-does-the-xorshift-random-number-generator-always-seem-to-use-these-specific}
 #' @name xorshift
+#' @export
 xorshift_32 <- function(seed, n) {
     .Call(`_randngen_xorshift_32`, seed, n)
 }
 
 #' @rdname xorshift
+#' @export
 xorshift_64 <- function(seed, n) {
     .Call(`_randngen_xorshift_64`, seed, n)
 }

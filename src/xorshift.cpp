@@ -9,6 +9,7 @@ using namespace Rcpp;
 //'
 //' For more information, check out the \href{https://en.wikipedia.org/wiki/Xorshift}{Wikipedia Page}, \href{}{George Marsaglia's paper} and \href{this StackOverflow post}{https://stackoverflow.com/questions/71522815/why-does-the-xorshift-random-number-generator-always-seem-to-use-these-specific}
 //' @name xorshift
+//' @export
  // [[Rcpp::export]]
 
  NumericVector xorshift_32(long seed, int n){
@@ -27,6 +28,7 @@ using namespace Rcpp;
 
 
 //' @rdname xorshift
+//' @export
 // [[Rcpp::export]]
 
  NumericVector xorshift_64(long long seed, int n){

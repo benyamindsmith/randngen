@@ -10,8 +10,8 @@ using namespace Rcpp;
 //' The Fibonacci sequence may be described by the recurrence relation:\cr\cr
 //' \eqn{S_n = S_{n-1}+S_{n-2}}\cr\cr
 //' Hence, the new term is the sum of the last two terms in the sequence This can be generalized by the sequence:\cr\cr
-//' \eqn{S_n \eqiv S_{n-j} \star S_{n-k} \space (\text{mod }m), 0 < j <k}\cr\cr
-//' In which case, the new term is some combination of any two previous terms. m is usually a power of 2 (m = 2M), often 232 or 264. The  \star operator denotes a general binary operation. This may be either addition, subtraction, multiplication, or the bitwise exclusive-or operator (XOR). In this package, the \star operator denotes addition.The theory of this type of generator is rather complex, and it may not be sufficient simply to choose random values for j and k. These generators also tend to be very sensitive to initialisation.
+//' \eqn{S_n  \equiv S_{n-j} \ast S_{n-k} \space (\text{mod }m), 0 < j <k}\cr\cr
+//' In which case, the new term is some combination of any two previous terms. m is usually a power of 2 (m = 2M), often 232 or 264. The  \eqn{\ast} operator denotes a general binary operation. This may be either addition, subtraction, multiplication, or the bitwise exclusive-or operator (XOR). In this package, the \eqn{\ast} operator denotes addition.The theory of this type of generator is rather complex, and it may not be sufficient simply to choose random values for j and k. These generators also tend to be very sensitive to initialisation.
 //'
 //' For more information, see the \href{https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator}{Wikipedia page}.
 //'
