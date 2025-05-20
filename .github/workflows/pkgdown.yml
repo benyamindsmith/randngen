@@ -56,6 +56,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to docs/"
           else
-            git commit -m "Rebuild site: $(date --utc +%Y-%m-%dT%H:%M:%SZ)"
+            git commit -m "Rebuild site"
             git push
           fi
