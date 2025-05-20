@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          Rscript -e 'install.packages(c("devtools", "roxygen2", "pkgdown"))'
+          Rscript -e 'install.packages(c("Rcpp","devtools", "roxygen2", "pkgdown"))'
           Rscript -e 'devtools::install_deps(dependencies = TRUE)'
 
       - name: Build site
