@@ -50,4 +50,12 @@ jobs:
       # 6) Commit & push only docs/ if changed
       - name: Commit and push docs/
         run: |
-          git config user.name "
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "No changes to docs/"
+          else
+            git commit -m "Rebuild site: $(date --utc +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
