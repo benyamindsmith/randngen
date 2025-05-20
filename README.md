@@ -56,7 +56,7 @@ The following is a list of supported random number generators in this package.
 
 - [ ] Mersenne Twister (MT)  [NOT STARTED]
 
-- [ ] Xorshift  [IN PROGRESS]
+- [ ] Xorshift  [NEEDS DOCUMENTATION | PLENTY MORE EXERCISES]
 
 - [ ] Well equidistributed long-period linear (WELL)  [NOT STARTED]
 

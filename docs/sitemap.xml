@@ -1,63 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/understanding-prngs.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/reference/blumb_blumb_shub.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cmwc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/icg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lcg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lcg_parkmiller.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lfg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lfsr_fib.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lfsr_galois.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lfsr_xorshift.html</loc>
-  </url>
-  <url>
-    <loc>/reference/middlesquare.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mwc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/winchmann_hill.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/understanding-prngs.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/reference/blumb_blumb_shub.html</loc></url>
+<url><loc>/reference/cmwc.html</loc></url>
+<url><loc>/reference/icg.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/lcg.html</loc></url>
+<url><loc>/reference/lcg_parkmiller.html</loc></url>
+<url><loc>/reference/lcg_tos.html</loc></url>
+<url><loc>/reference/lfg.html</loc></url>
+<url><loc>/reference/lfsr_fib.html</loc></url>
+<url><loc>/reference/lfsr_galois.html</loc></url>
+<url><loc>/reference/lfsr_xorshift.html</loc></url>
+<url><loc>/reference/middlesquare.html</loc></url>
+<url><loc>/reference/mwc.html</loc></url>
+<url><loc>/reference/scale_to_01.html</loc></url>
+<url><loc>/reference/winchmann_hill.html</loc></url>
+<url><loc>/reference/xorshift.html</loc></url>
 </urlset>
+
