@@ -1,36 +1,58 @@
-name: Build and Deploy Github Pages Site
+# .github/workflows/build-site.yml
+name: Build Package Site
 
 on:
   push:
-    branches:
-      - main  # Change this if your default branch is not 'main'
+    branches: [ main, master ]
+
+permissions:
+  contents: write   # allow pushing back to the repo
 
 jobs:
   build-site:
     runs-on: ubuntu-latest
-
     steps:
+
+      # 1) check out with write-credentials so we can push docs back
       - name: Checkout repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # so GITHUB_TOKEN can push
+
+      # 2) bring in Pandoc (for vignettes) and R
+      - name: Set up Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
 
-      - name: Install system dependencies
+      # 3) system deps
+      - name: Install system libraries
         run: |
           sudo apt-get update
           sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
 
-      - name: Install dependencies
+      # 4) install package dependencies (including pkgdown if you use it)
+      - name: Install R package deps
         run: |
-          Rscript -e 'install.packages(c("Rcpp","devtools", "roxygen2", "pkgdown"))'
+          Rscript -e 'install.packages(c("devtools","roxygen2","pkgdown"))'
           Rscript -e 'devtools::install_deps(dependencies = TRUE)'
 
+      # 5) build the site into docs/
       - name: Build site
         run: Rscript -e 'devtools::build_site()'
 
-      - name: Upload site as artifact (optional)
-        uses: actions/upload-artifact@v3
-        with:
-          name: site
-          path: docs/  # Change this path if your site output goes elsewhere
+      # 6) commit & push docs/ back to main
+      - name: Commit and push docs/
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "No changes in docs/"
+          else
+            git commit -m "Rebuild site: $(date --utc +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
