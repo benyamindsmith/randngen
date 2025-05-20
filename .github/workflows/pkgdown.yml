@@ -1,0 +1,36 @@
+name: Build and Deploy Github Pages Site
+
+on:
+  push:
+    branches:
+      - main  # Change this if your default branch is not 'main'
+
+jobs:
+  build-site:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+
+      - name: Install dependencies
+        run: |
+          Rscript -e 'install.packages(c("devtools", "roxygen2", "pkgdown"))'
+          Rscript -e 'devtools::install_deps(dependencies = TRUE)'
+
+      - name: Build site
+        run: Rscript -e 'devtools::build_site()'
+
+      - name: Upload site as artifact (optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: site
+          path: docs/  # Change this path if your site output goes elsewhere
