@@ -4,11 +4,14 @@
 \alias{xorshift}
 \alias{xorshift_32}
 \alias{xorshift_64}
+\alias{xorshift_128}
 \title{Xorshift Random Number Generators}
 \usage{
 xorshift_32(seed, n)
 
 xorshift_64(seed, n)
+
+xorshift_128(seed1, seed2, seed3, seed4, n)
 }
 \description{
 Xorshift random number generators, also called shift-register generators, are a class of pseudorandom number generators that were invented by George Marsaglia.They are a subset of linear-feedback shift registers (LFSRs) which allow a particularly efficient implementation in software without the excessive use of sparse polynomials. They generate the next number in their sequence by repeatedly taking the exclusive or of a number with a bit-shifted version of itself. This makes execution extremely efficient on modern computer architectures, but it does not benefit efficiency in a hardware implementation. Like all LFSRs, the parameters have to be chosen very carefully in order to achieve a long period.

@@ -14,7 +14,7 @@ using namespace Rcpp;
 
  NumericVector xorshift_32(long seed, int n){
    NumericVector generated_numbers;
-   long long x = seed;
+   long x = seed;
 
    for(int i=0; i < n; i++){
      x ^= x << 13;
@@ -45,10 +45,44 @@ using namespace Rcpp;
    return generated_numbers;
  }
 
+//' @rdname xorshift
+//' @export
+// [[Rcpp::export]]
+NumericVector xorshift_128(long seed1, long seed2, long seed3, long seed4, int n) {
+  NumericVector generated_numbers;
+
+  // Make sure no all-zero state
+  if (seed1 == 0 && seed2 == 0 && seed3 == 0 && seed4 == 0) {
+    stop("All seeds cannot be zero.");
+  }
+
+  long x[4] = {seed1, seed2, seed3, seed4};
+
+  for (int i = 0; i < n; i++) {
+    long t = x[3];
+    long s = x[0];
+    x[3] = x[2];
+    x[2] = x[1];
+    x[1] = s;
+
+    t ^= t << 11;
+    t ^= t >> 8;
+    x[0] = t ^ s ^ (s >> 19);
+
+    // Store as double (R uses double for numerics)
+    generated_numbers.push_back(x[0]);
+  }
+
+  return generated_numbers;
+}
+
 /*** R
-xorshift_32(seed = 51966, n = 10000)|>
+xorshift_32(seed = 51966, n = 1000)|>
   plot(main = "Xorshift 32")
 
-xorshift_64(seed = 51966, n = 10000)|>
+xorshift_64(seed = 51966, n = 1000)|>
   plot(main = "Xorshift 64")
+
+xorshift_128(123456789, 362436069, 521288629, 88675123, n = 1000)|>
+  plot(main = "Xorshift 128")
 */

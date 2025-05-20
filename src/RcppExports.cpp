@@ -213,6 +213,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// xorshift_128
+NumericVector xorshift_128(long seed1, long seed2, long seed3, long seed4, int n);
+RcppExport SEXP _randngen_xorshift_128(SEXP seed1SEXP, SEXP seed2SEXP, SEXP seed3SEXP, SEXP seed4SEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< long >::type seed1(seed1SEXP);
+    Rcpp::traits::input_parameter< long >::type seed2(seed2SEXP);
+    Rcpp::traits::input_parameter< long >::type seed3(seed3SEXP);
+    Rcpp::traits::input_parameter< long >::type seed4(seed4SEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(xorshift_128(seed1, seed2, seed3, seed4, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_randngen_blumb_blumb_shub", (DL_FUNC) &_randngen_blumb_blumb_shub, 4},
@@ -230,6 +245,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randngen_winchmann_hill", (DL_FUNC) &_randngen_winchmann_hill, 4},
     {"_randngen_xorshift_32", (DL_FUNC) &_randngen_xorshift_32, 2},
     {"_randngen_xorshift_64", (DL_FUNC) &_randngen_xorshift_64, 2},
+    {"_randngen_xorshift_128", (DL_FUNC) &_randngen_xorshift_128, 5},
     {NULL, NULL, 0}
 };
 

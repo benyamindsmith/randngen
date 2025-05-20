@@ -310,3 +310,9 @@ xorshift_64 <- function(seed, n) {
     .Call(`_randngen_xorshift_64`, seed, n)
 }
 
+#' @rdname xorshift
+#' @export
+xorshift_128 <- function(seed1, seed2, seed3, seed4, n) {
+    .Call(`_randngen_xorshift_128`, seed1, seed2, seed3, seed4, n)
+}
+
