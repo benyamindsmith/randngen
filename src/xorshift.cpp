@@ -7,10 +7,36 @@ using namespace Rcpp;
 //'
 //' For execution in software, xorshift generators are among the fastest PRNGs, requiring very small code and state. However, they do not pass every statistical test without further refinement. This weakness is amended by combining them with a non-linear function, as described in the original paper. Because plain xorshift generators (without a non-linear step) fail some statistical tests, they have been accused of being unreliable.
 //'
-//' For more information, check out the \href{https://en.wikipedia.org/wiki/Xorshift}{Wikipedia Page}, \href{}{George Marsaglia's paper} and \href{this StackOverflow post}{https://stackoverflow.com/questions/71522815/why-does-the-xorshift-random-number-generator-always-seem-to-use-these-specific}
+//' For more information, check out the \href{https://en.wikipedia.org/wiki/Xorshift}{Wikipedia Page}, \href{George Marsaglia's paper}{https://www.jstatsoft.org/article/view/v008i14} and \href{this StackOverflow post}{https://stackoverflow.com/questions/71522815/why-does-the-xorshift-random-number-generator-always-seem-to-use-these-specific}
 //' @name xorshift
+//' @param seed Integer-like scalar used to initialize the internal state for
+//'   \code{xorshift_32()} (32-bit variant) and \code{xorshift_64()} (64-bit variant).
+//'   Different seeds produce different sequences. A seed of 0 is permitted for the
+//'   32- and 64-bit variants, but may yield a degenerate sequence depending on platform
+//'   integer behavior.
+//'
+//' @param seed1,seed2,seed3,seed4 Integer-like scalars used to initialize the four-word
+//'   internal state for \code{xorshift_128()}. The state must not be all zeros; if all
+//'   four seeds are 0, the function errors.
+//'
+//' @param n Integer scalar. Number of pseudorandom values to generate. Must be
+//'   non-negative.
+//'
+//' @return A numeric vector of length \code{n} containing the generated values.
+//'   Values are returned as type \code{numeric} (double) because that is R's default
+//'   numeric type.
+//'
+//' @details
+//' These functions implement classic xorshift generators using bitwise XOR and shifts.
+//' They are intended for speed and reproducibility, not cryptographic security.
+//'
+//' @seealso \href{https://en.wikipedia.org/wiki/Xorshift}{Xorshift on Wikipedia}
+//' @examples
+//' xorshift_32(seed = 51966, n = 1000)
+//' xorshift_64(seed = 51966, n = 1000)
+//' xorshift_128(123456789, 362436069, 521288629, 88675123, n = 1000)
 //' @export
- // [[Rcpp::export]]
+// [[Rcpp::export]]
 
  NumericVector xorshift_32(long seed, int n){
    NumericVector generated_numbers;

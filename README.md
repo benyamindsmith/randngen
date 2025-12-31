@@ -38,7 +38,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Blumb Blumb Shub (`blumb_blumb_shub(seed, p, q, n)`)
 
-- [ ] ACORN [NOT STARTED]
+- [ ] ACORN [IN PROGRESS]
 
 - [ ] MIXMAX [NOT STARTED]
 
@@ -56,7 +56,7 @@ The following is a list of supported random number generators in this package.
 
 - [ ] Mersenne Twister (MT)  [NOT STARTED]
 
-- [ ] Xorshift  [NEEDS DOCUMENTATION | PLENTY MORE IMPLEMENTATIONS]
+- [x] Xorshift (`xorshift_32(seed, n)`, `xorshift_64(seed, n)` & `xorshift_128(seed1, seed2, seed3, seed4, n)`) [PLENTY MORE IMPLEMENTATIONS BUT HAPPY FOR NOW]
 
 - [ ] Well equidistributed long-period linear (WELL)  [NOT STARTED]
 
