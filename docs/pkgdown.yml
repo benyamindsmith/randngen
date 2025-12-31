@@ -1,6 +1,6 @@
 pandoc: 3.1.11
-pkgdown: 2.1.2
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   understanding-prngs: understanding-prngs.html
-last_built: 2025-05-20T19:03Z
+last_built: 2025-12-31T04:59Z
