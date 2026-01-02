@@ -119,6 +119,8 @@ After building out a significant amount of random number generators and doing th
 
 - [The `random` C++ library](https://en.cppreference.com/w/cpp/numeric/random)
 
+- [The `sitmo` R package](https://github.com/coatless-rpkg/sitmo)
+- 
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
 
 - [PractRand](https://github.com/tylov-fork/PractRand)
