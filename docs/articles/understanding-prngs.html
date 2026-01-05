@@ -187,121 +187,108 @@ updates, which can impact reproducibility for code across versions.
 Here’s a summary of the key PRNGs used across different base R versions
 and the changes introduced over time.</p>
 <div class="section level4">
-<h4 id="early-versions-of-r-r-1-0-0">1. <strong>Early Versions of R (&lt; R 1.0.0)</strong><a class="anchor" aria-label="anchor" href="#early-versions-of-r-r-1-0-0"></a>
+<h4 id="early-versions-of-r-before-the-1-7-0-series">1. <strong>Early Versions of R (before the 1.7.0
+series)</strong><a class="anchor" aria-label="anchor" href="#early-versions-of-r-before-the-1-7-0-series"></a>
 </h4>
 <ul>
-<li>In the earliest versions of R, PRNGs were less standardized and
-primarily focused on providing simple random number generation for basic
-statistical analysis.</li>
-<li>These versions used basic implementations of Linear Congruential
-Generators (LCGs), which are not very robust for high-quality randomness
-requirements but were adequate for basic applications.</li>
+<li>In the earliest versions of R, pseudo-random number generation was
+already configurable but less standardized in terms of defaults.</li>
+<li>Base R supported several uniform PRNG algorithms, including
+<strong>Wichmann–Hill</strong>, <strong>Marsaglia-Multicarry</strong>,
+and <strong>Super-Duper</strong>.</li>
+<li>Normal random numbers were generated using the
+<strong>Kinderman–Ramage</strong> method, which was later found to have
+approximation issues. For reproducibility, this legacy behavior is
+preserved under the name <code>"Buggy Kinderman-Ramage"</code>.</li>
 </ul>
+<p>Rather than relying on a single primitive generator, early R
+emphasized flexibility, with the understanding that defaults and
+algorithms might evolve.</p>
 </div>
 <div class="section level4">
-<h4 id="r-1-0-0-to-r-2-0-0">2. <strong>R 1.0.0 to R 2.0.0</strong><a class="anchor" aria-label="anchor" href="#r-1-0-0-to-r-2-0-0"></a>
+<h4 id="r-1-7-0-series-documented-in-r-1-7-1-news">2. <strong>R 1.7.0 Series (documented in <a href="https://svn.r-project.org/R/tags/R-1-7-1/NEWS" class="external-link">R 1.7.1
+NEWS</a>)</strong><a class="anchor" aria-label="anchor" href="#r-1-7-0-series-documented-in-r-1-7-1-news"></a>
 </h4>
 <ul>
 <li>
-<strong>PRNG</strong>: Mersenne Twister (MT19937) and
-L’Ecuyer-CMRG</li>
+<strong>PRNG</strong>: Mersenne Twister (MT19937)</li>
 <li>
-<strong>Details</strong>: R 1.0.0 introduced the widely adopted
-Mersenne Twister algorithm (MT19937), which remains one of the primary
-generators in many versions of R. It has a period of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>19937</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{19937} - 1</annotation></semantics></math>,
-making it suitable for many computational tasks due to its very high
-periodicity.</li>
+<strong>Details</strong>: In the R 1.7.0 series, R changed its
+default uniform PRNG to the widely used <strong>Mersenne Twister
+(MT19937)</strong>, which has a period of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>19937</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{19937} - 1</annotation></semantics></math>.</li>
 <li>
-<strong>Additional</strong>: The L’Ecuyer-CMRG generator was also
-added as an option to allow for multiple independent streams of random
-numbers, which is useful for parallel processing.</li>
+<strong>Additional</strong>: At the same time, the default method
+for generating normal random numbers was changed to
+<strong>Inversion</strong>.</li>
+<li>
+<strong>Reproducibility</strong>: The function
+<code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGversion()</a></code> was introduced, allowing users to reproduce
+the exact RNG behavior of earlier R versions.</li>
 </ul>
+<p>This release marks the point at which Mersenne Twister became the
+default generator in R.</p>
 </div>
 <div class="section level4">
-<h4 id="r-2-1-0-to-r-2-14-0">3. <strong>R 2.1.0 to R 2.14.0</strong><a class="anchor" aria-label="anchor" href="#r-2-1-0-to-r-2-14-0"></a>
+<h4 id="user-selectable-prngs-in-base-r">3. <strong>User-Selectable PRNGs in Base R</strong><a class="anchor" aria-label="anchor" href="#user-selectable-prngs-in-base-r"></a>
 </h4>
 <ul>
 <li>
-<strong>PRNG</strong>: Default remains Mersenne Twister, with
-support for L’Ecuyer-CMRG, Super-Duper, and Knuth-TAOCP-2002.</li>
+<strong>PRNG</strong>: Default remains Mersenne Twister</li>
 <li>
-<strong>Details</strong>: During these versions, the L’Ecuyer-CMRG
-(multiple-recursive generator for parallel streams), Super-Duper, and
-Knuth’s TAOCP-2002 algorithms were added as user-selectable options.
-Super-Duper and Knuth-TAOCP-2002 are both generators with specific
-application suitability (e.g., Knuth’s generator was well-suited for
-sampling due to its statistical robustness).</li>
+<strong>Details</strong>: Across subsequent R releases, base R
+continued to support multiple user-selectable uniform PRNGs via
+<code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGkind()</a></code>, including:
+<ul>
+<li><code>"Wichmann-Hill"</code></li>
+<li><code>"Marsaglia-Multicarry"</code></li>
+<li><code>"Super-Duper"</code></li>
+<li><code>"Knuth-TAOCP"</code></li>
+<li><code>"Knuth-TAOCP-2002"</code></li>
 </ul>
+</li>
+</ul>
+<p>These generators serve different purposes and allow users to choose
+algorithms tailored to specific statistical or computational needs.</p>
 </div>
 <div class="section level4">
-<h4 id="r-2-15-0-to-r-3-5-0">4. <strong>R 2.15.0 to R 3.5.0</strong><a class="anchor" aria-label="anchor" href="#r-2-15-0-to-r-3-5-0"></a>
+<h4 id="introduction-of-lecuyer-cmrg">4. <strong>Introduction of L’Ecuyer-CMRG</strong><a class="anchor" aria-label="anchor" href="#introduction-of-lecuyer-cmrg"></a>
 </h4>
 <ul>
 <li>
-<strong>PRNG</strong>: Default Mersenne Twister, updated
-L’Ecuyer-CMRG, and additional options including
-Marsaglia-Multicarry.</li>
+<strong>PRNG</strong>: L’Ecuyer-CMRG (MRG32k3a)</li>
 <li>
-<strong>Details</strong>: These versions kept Mersenne Twister as
-the default generator but improved the L’Ecuyer-CMRG implementation.
-Marsaglia-Multicarry, a complementary-multiply-with-carry generator, was
-added as a lightweight, fast alternative.</li>
+<strong>Details</strong>: R added <strong>“L’Ecuyer-CMRG”</strong>
+as an additional RNG kind to support <strong>multiple independent
+random-number streams</strong>.</li>
+<li>
+<strong>Use case</strong>: This generator is particularly important
+for parallel simulations, where independent but reproducible streams are
+required.</li>
 </ul>
+<p>L’Ecuyer-CMRG remains a core component of R’s RNG infrastructure.</p>
 </div>
 <div class="section level4">
-<h4 id="r-3-6-0">5. <strong>R 3.6.0</strong><a class="anchor" aria-label="anchor" href="#r-3-6-0"></a>
+<h4 id="r-4-x-series-current-behavior">6. <strong>R 4.x Series (Current Behavior)</strong><a class="anchor" aria-label="anchor" href="#r-4-x-series-current-behavior"></a>
 </h4>
 <ul>
 <li>
-<strong>PRNG</strong>: Change in sampling algorithm (not the PRNG
-itself).</li>
+<strong>PRNG</strong>: Default remains Mersenne Twister</li>
 <li>
-<strong>Details</strong>: Starting with R 3.6.0, there was a change
-to the sampling algorithm used by functions like <code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code>.
-This update improved randomness in sampling without replacement by
-ensuring each permutation has equal probability, which impacted
-reproducibility of code relying on sampling in previous versions.</li>
-<li>
-<strong>Impact</strong>: While this was not a change to the PRNGs
-directly, it affected random number generation behavior in R functions,
-requiring some users to set compatibility options for older
-scripts.</li>
+<strong>Details</strong>: In modern R versions:
+<ul>
+<li>Mersenne Twister continues to be the default uniform PRNG.</li>
+<li>L’Ecuyer-CMRG remains available for parallel and multi-stream
+use.</li>
+<li>Historical RNG behavior can be reproduced using
+<code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGversion()</a></code>.</li>
 </ul>
-</div>
-<div class="section level4">
-<h4 id="r-4-0-0-onwards">6. <strong>R 4.0.0 Onwards</strong><a class="anchor" aria-label="anchor" href="#r-4-0-0-onwards"></a>
-</h4>
-<ul>
+</li>
 <li>
-<strong>PRNG</strong>: Default remains Mersenne Twister with support
-for 64-bit integers.</li>
-<li>
-<strong>Details</strong>: The sampling mechanism and random number
-generation were further refined for 64-bit systems, improving the speed
-and quality of random number generation on modern hardware.</li>
-<li>
-<strong>Additional</strong>: The <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGkind()</a></code> function
-allows users to set RNG kinds explicitly for reproducibility, with
-settings such as <code>"Mersenne-Twister"</code>,
-<code>"L'Ecuyer-CMRG"</code>, and newer options like
-<code>"Xoroshiro128+"</code> for applications needing faster,
-non-cryptographic random numbers.</li>
-</ul>
-</div>
-<div class="section level4">
-<h4 id="r-4-2-0-and-later">7. <strong>R 4.2.0 and Later</strong><a class="anchor" aria-label="anchor" href="#r-4-2-0-and-later"></a>
-</h4>
-<ul>
-<li>
-<strong>PRNG</strong>: Addition of Xoroshiro128+ as an optional
-generator.</li>
-<li>
-<strong>Details</strong>: R 4.2.0 introduced Xoroshiro128+, a PRNG
-known for being fast and having a reasonable trade-off in terms of
-randomness quality for applications not requiring cryptographic
-security. It offers lower memory overhead compared to Mersenne Twister,
-making it ideal for simulation-heavy tasks.</li>
+<strong>Note</strong>: Base R does <strong>not</strong> include
+xoroshiro or xoshiro-family generators as options in
+<code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGkind()</a></code>. Such generators are available via external
+packages, but are not part of base R.</li>
 </ul>
 </div>
 <div class="section level4">
@@ -309,59 +296,50 @@ making it ideal for simulation-heavy tasks.</li>
 </h4>
 <table class="table">
 <colgroup>
-<col width="13%">
 <col width="16%">
-<col width="28%">
-<col width="40%">
+<col width="19%">
+<col width="55%">
+<col width="8%">
 </colgroup>
 <thead><tr class="header">
-<th><strong>R Version</strong></th>
+<th><strong>R Version / Era</strong></th>
 <th><strong>Default PRNG</strong></th>
 <th><strong>Other Available PRNGs</strong></th>
 <th><strong>Notes</strong></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>R &lt; 1.0.0</td>
-<td>Basic LCG</td>
-<td>-</td>
-<td>Simple LCGs with limited randomness quality.</td>
+<td>Before R 1.7.0</td>
+<td>Version-dependent</td>
+<td>Wichmann–Hill, Marsaglia-Multicarry, Super-Duper</td>
+<td>Legacy normal RNG preserved as
+<code>"Buggy Kinderman-Ramage"</code>
+</td>
 </tr>
 <tr class="even">
-<td>R 1.0.0 - 2.0.0</td>
+<td>R 1.7.0 series</td>
+<td>Mersenne Twister</td>
+<td>Same alternatives remain selectable</td>
+<td>Default RNG changed; <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGversion()</a></code> introduced</td>
+</tr>
+<tr class="odd">
+<td>Later additions</td>
 <td>Mersenne Twister</td>
 <td>L’Ecuyer-CMRG</td>
-<td>First use of Mersenne Twister as the default PRNG.</td>
-</tr>
-<tr class="odd">
-<td>R 2.1.0 - 2.14.0</td>
-<td>Mersenne Twister</td>
-<td>Super-Duper, Knuth-TAOCP-2002</td>
-<td>Additional PRNGs introduced for specific needs.</td>
+<td>Supports multiple independent streams</td>
 </tr>
 <tr class="even">
-<td>R 2.15.0 - 3.5.0</td>
-<td>Mersenne Twister</td>
-<td>Marsaglia-Multicarry, updated L’Ecuyer-CMRG</td>
-<td>Added Marsaglia-Multicarry for faster random numbers.</td>
-</tr>
-<tr class="odd">
 <td>R 3.6.0</td>
 <td>Mersenne Twister</td>
-<td>-</td>
-<td>Updated sampling algorithm for better random permutations.</td>
-</tr>
-<tr class="even">
-<td>R 4.0.0 - 4.1.0</td>
-<td>Mersenne Twister</td>
-<td>L’Ecuyer-CMRG, 64-bit support</td>
-<td>64-bit integer support for PRNGs.</td>
+<td>(unchanged)</td>
+<td>Corrected discrete-uniform sampling algorithm</td>
 </tr>
 <tr class="odd">
-<td>R 4.2.0+</td>
+<td>R 4.x (current)</td>
 <td>Mersenne Twister</td>
-<td>Xoroshiro128+</td>
-<td>Introduced Xoroshiro128+ for faster generation.</td>
+<td>Wichmann–Hill, Marsaglia-Multicarry, Super-Duper, Knuth variants,
+L’Ecuyer-CMRG</td>
+<td>No xoroshiro/xoshiro in base R</td>
 </tr>
 </tbody>
 </table>
@@ -387,6 +365,7 @@ Medicine 38, 2074–2102 (2019).</p></li>
 Validated <a href="https://stats.stackexchange.com/questions/637706/generating-distributions-from-random-number-generators" class="external-link uri">https://stats.stackexchange.com/questions/637706/generating-distributions-from-random-number-generators</a>.</p></li>
 <li><p>L’Ecuyer, P. &amp; Simard, R. TestU01. ACM Transactions on
 Mathematical Software 33, 1–40 (2007).</p></li>
+<li><p>R Core Team. R News Files. <a href="https://cran.r-project.org/doc/manuals/r-release/" class="external-link uri">https://cran.r-project.org/doc/manuals/r-release/</a></p></li>
 </ol>
 </div>
   </div>
