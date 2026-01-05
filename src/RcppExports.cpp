@@ -10,6 +10,20 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// acorn
+NumericVector acorn(long long seed, int n, int k, long long M);
+RcppExport SEXP _randngen_acorn(SEXP seedSEXP, SEXP nSEXP, SEXP kSEXP, SEXP MSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< long long >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< long long >::type M(MSEXP);
+    rcpp_result_gen = Rcpp::wrap(acorn(seed, n, k, M));
+    return rcpp_result_gen;
+END_RCPP
+}
 // blumb_blumb_shub
 NumericVector blumb_blumb_shub(int seed, int p, int q, int n);
 RcppExport SEXP _randngen_blumb_blumb_shub(SEXP seedSEXP, SEXP pSEXP, SEXP qSEXP, SEXP nSEXP) {
@@ -230,6 +244,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_randngen_acorn", (DL_FUNC) &_randngen_acorn, 4},
     {"_randngen_blumb_blumb_shub", (DL_FUNC) &_randngen_blumb_blumb_shub, 4},
     {"_randngen_cmwc", (DL_FUNC) &_randngen_cmwc, 6},
     {"_randngen_icg", (DL_FUNC) &_randngen_icg, 5},

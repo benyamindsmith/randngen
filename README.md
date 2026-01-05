@@ -38,7 +38,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] Blumb Blumb Shub (`blumb_blumb_shub(seed, p, q, n)`)
 
-- [ ] ACORN [IN PROGRESS]
+- [x] ACORN (`acorn(seed, n, k, M)`)
 
 - [ ] MIXMAX [NOT STARTED]
 
