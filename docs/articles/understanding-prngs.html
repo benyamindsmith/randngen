@@ -129,12 +129,12 @@ parameters.</p>
 <span><span class="fu">randngen</span><span class="fu">::</span><span class="fu"><a href="../reference/lcg.html">lcg</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">1234</span>, n<span class="op">=</span><span class="fl">10000</span><span class="op">)</span><span class="op">|&gt;</span></span>
 <span>  <span class="fu">range01</span><span class="op">(</span><span class="op">)</span><span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span>main<span class="op">=</span> <span class="st">"0-1 Scaled Uniform Random Variables with randgen::lcg()"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="understanding-prngs_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="understanding-prngs_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span>main<span class="op">=</span> <span class="st">"0-1 Uniform Random Variables with runif()"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="understanding-prngs_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="understanding-prngs_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="700"></p>
 <div class="section level3">
 <h3 id="applying-the-inverse-probability-transform-to-generate-random-variables">Applying the Inverse Probability Transform to Generate Random
 Variables<a class="anchor" aria-label="anchor" href="#applying-the-inverse-probability-transform-to-generate-random-variables"></a>
@@ -149,13 +149,13 @@ Define Inverse Probability Transform. Make POC with qnorm
 <span>  <span class="fu">range01</span><span class="op">(</span><span class="op">)</span><span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="op">)</span><span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span>main<span class="op">=</span> <span class="st">"Normal(0,1) Random Variables using\nscaled randgen::lcg() values and qnorm()"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="understanding-prngs_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="understanding-prngs_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="op">)</span><span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span>main<span class="op">=</span> <span class="st">"Normal(0,1) Random Variables using runif() and qnorm()"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="understanding-prngs_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p><img src="understanding-prngs_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 </div>
 <div class="section level2">
@@ -406,7 +406,7 @@ Mathematical Software 33, 1–40 (2007).</p></li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>
