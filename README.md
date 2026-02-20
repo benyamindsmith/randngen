@@ -123,6 +123,8 @@ After building out a significant amount of random number generators and doing th
 
 - [The `Runuran` R package ](https://github.com/unuran/Runuran/)
 
+- [The `randtests` R package](https://cran.r-project.org/web/packages/randtests/index.html)
+
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
 
 - [PractRand](https://github.com/tylov-fork/PractRand)

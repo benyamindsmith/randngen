@@ -317,6 +317,10 @@ mwc <- function(seed, n, b = 4294967296L, a = 7L, c = 4L) {
     .Call(`_randngen_mwc`, seed, n, b, a, c)
 }
 
+run_testu01_c <- function(vec) {
+    .Call(`_randngen_run_testu01_c`, vec)
+}
+
 #' TempleOS Linear Congruential Generator (LCG)
 #'
 #' Generates `n` pseudo-random values using the TempleOS constants, with an initial seed taken from the CPU timestamp counter. This code is inspired from the Linear Congruential Generator Specified in the TempleOS source code. To see the source code in TempleOS, see \href{https://tinkeros.github.io/WbTempleOS/Kernel/KMathB.html#l77}{here}.

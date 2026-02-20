@@ -178,6 +178,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// run_testu01_c
+Rcpp::DataFrame run_testu01_c(Rcpp::NumericVector vec);
+RcppExport SEXP _randngen_run_testu01_c(SEXP vecSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type vec(vecSEXP);
+    rcpp_result_gen = Rcpp::wrap(run_testu01_c(vec));
+    return rcpp_result_gen;
+END_RCPP
+}
 // lcg_tos
 NumericVector lcg_tos(int n);
 RcppExport SEXP _randngen_lcg_tos(SEXP nSEXP) {
@@ -256,6 +267,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randngen_lfsr_galois", (DL_FUNC) &_randngen_lfsr_galois, 4},
     {"_randngen_middlesquare", (DL_FUNC) &_randngen_middlesquare, 2},
     {"_randngen_mwc", (DL_FUNC) &_randngen_mwc, 5},
+    {"_randngen_run_testu01_c", (DL_FUNC) &_randngen_run_testu01_c, 1},
     {"_randngen_lcg_tos", (DL_FUNC) &_randngen_lcg_tos, 1},
     {"_randngen_winchmann_hill", (DL_FUNC) &_randngen_winchmann_hill, 4},
     {"_randngen_xorshift_32", (DL_FUNC) &_randngen_xorshift_32, 2},
