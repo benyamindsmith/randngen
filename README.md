@@ -125,6 +125,8 @@ To get involved, feel free to open up and issue and submit a PR.
 
 - [The `randtoolbox` R package](https://cran.r-project.org/web/packages/randtoolbox/index.html)
 
+- [The `CrypRndTest` R package](https://cran.r-project.org/web/packages/CryptRndTest/index.html)
+
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
 
 - [PractRand](https://github.com/tylov-fork/PractRand)
