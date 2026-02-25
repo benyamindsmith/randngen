@@ -121,6 +121,8 @@ To get involved, feel free to open up and issue and submit a PR.
 
 - [The `randtests` R package](https://cran.r-project.org/web/packages/randtests/index.html)
 
+- [The `rdieharder` R package](https://github.com/eddelbuettel/rdieharder)
+
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
 
 - [PractRand](https://github.com/tylov-fork/PractRand)
