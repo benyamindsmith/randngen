@@ -123,6 +123,8 @@ To get involved, feel free to open up and issue and submit a PR.
 
 - [The `rdieharder` R package](https://github.com/eddelbuettel/rdieharder)
 
+- [The `randtoolbox` R package](https://cran.r-project.org/web/packages/randtoolbox/index.html)
+
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
 
 - [PractRand](https://github.com/tylov-fork/PractRand)
