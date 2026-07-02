@@ -163,29 +163,39 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// mixmax
+NumericVector mixmax(long long seed, int n, int N, std::string seed_method, int vielbein_index, int burn_in, int burn_in_cycles, bool start_after_seed, std::string scaling, bool raw, bool warn_small_N);
+RcppExport SEXP _randngen_mixmax(SEXP seedSEXP, SEXP nSEXP, SEXP NSEXP, SEXP seed_methodSEXP, SEXP vielbein_indexSEXP, SEXP burn_inSEXP, SEXP burn_in_cyclesSEXP, SEXP start_after_seedSEXP, SEXP scalingSEXP, SEXP rawSEXP, SEXP warn_small_NSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< long long >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type N(NSEXP);
+    Rcpp::traits::input_parameter< std::string >::type seed_method(seed_methodSEXP);
+    Rcpp::traits::input_parameter< int >::type vielbein_index(vielbein_indexSEXP);
+    Rcpp::traits::input_parameter< int >::type burn_in(burn_inSEXP);
+    Rcpp::traits::input_parameter< int >::type burn_in_cycles(burn_in_cyclesSEXP);
+    Rcpp::traits::input_parameter< bool >::type start_after_seed(start_after_seedSEXP);
+    Rcpp::traits::input_parameter< std::string >::type scaling(scalingSEXP);
+    Rcpp::traits::input_parameter< bool >::type raw(rawSEXP);
+    Rcpp::traits::input_parameter< bool >::type warn_small_N(warn_small_NSEXP);
+    rcpp_result_gen = Rcpp::wrap(mixmax(seed, n, N, seed_method, vielbein_index, burn_in, burn_in_cycles, start_after_seed, scaling, raw, warn_small_N));
+    return rcpp_result_gen;
+END_RCPP
+}
 // mwc
-NumericVector mwc(int seed, int n, long long b, long long a, long long c);
+NumericVector mwc(int seed, int n, double b, double a, double c);
 RcppExport SEXP _randngen_mwc(SEXP seedSEXP, SEXP nSEXP, SEXP bSEXP, SEXP aSEXP, SEXP cSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< long long >::type b(bSEXP);
-    Rcpp::traits::input_parameter< long long >::type a(aSEXP);
-    Rcpp::traits::input_parameter< long long >::type c(cSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type c(cSEXP);
     rcpp_result_gen = Rcpp::wrap(mwc(seed, n, b, a, c));
-    return rcpp_result_gen;
-END_RCPP
-}
-// run_testu01_c
-Rcpp::DataFrame run_testu01_c(Rcpp::NumericVector vec);
-RcppExport SEXP _randngen_run_testu01_c(SEXP vecSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type vec(vecSEXP);
-    rcpp_result_gen = Rcpp::wrap(run_testu01_c(vec));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -266,8 +276,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_randngen_lfsr_fib", (DL_FUNC) &_randngen_lfsr_fib, 4},
     {"_randngen_lfsr_galois", (DL_FUNC) &_randngen_lfsr_galois, 4},
     {"_randngen_middlesquare", (DL_FUNC) &_randngen_middlesquare, 2},
+    {"_randngen_mixmax", (DL_FUNC) &_randngen_mixmax, 11},
     {"_randngen_mwc", (DL_FUNC) &_randngen_mwc, 5},
-    {"_randngen_run_testu01_c", (DL_FUNC) &_randngen_run_testu01_c, 1},
     {"_randngen_lcg_tos", (DL_FUNC) &_randngen_lcg_tos, 1},
     {"_randngen_winchmann_hill", (DL_FUNC) &_randngen_winchmann_hill, 4},
     {"_randngen_xorshift_32", (DL_FUNC) &_randngen_xorshift_32, 2},

@@ -2,10 +2,48 @@
 % Please edit documentation in R/RcppExports.R
 \name{cmwc}
 \alias{cmwc}
-\title{Complementary Multiply with Carry Generator}
+\title{Complementary Multiply-with-Carry Generator}
 \usage{
 cmwc(seed, n, r, bitsize = 32L, a = 7L, c = 4L)
 }
+\arguments{
+\item{seed}{Initial seed value for the generator.}
+
+\item{n}{Number of pseudo-random values to generate.}
+
+\item{r}{Lag parameter for a complementary multiply-with-carry generator.
+Currently unused in this implementationde}
+
+\item{bitsize}{Number of bits used to define the base \eqn{b = 2^{bitsize}}.
+Defaults to `32`.}
+
+\item{a}{Multiplier used in the recurrence. Defaults to `7`.}
+
+\item{c}{Initial carry value. Defaults to `4`.}
+}
+\value{
+A numeric vector of length `n` containing the generated pseudo-random values.
+}
 \description{
-Wikipedia: https://en.wikipedia.org/wiki/Multiply-with-carry_pseudorandom_number_generator#Complementary-multiply-with-carry_generators
+Generates a sequence of pseudo-random numbers using a multiply-with-carry-style
+recurrence.
+}
+\details{
+The generator updates the state using
+\deqn{x_i = (a x_{i-1} + c) \bmod b}
+where \eqn{b = 2^{bitsize}}. The carry is updated as
+\deqn{c = \left\lfloor (a x_{i-1} + c) / b \right\rfloor}
+
+
+This implementation uses a multiply-with-carry recurrence. Although the function
+is named `cmwc`, the current implementation does not use the lag parameter `r`
+and does not apply the complementary transformation commonly used in full CMWC
+generators.
+}
+\examples{
+cmwc(seed = 123, n = 10, r = 5)
+}
+\references{
+Wikipedia: Multiply-with-carry pseudorandom number generator.
+\url{https://en.wikipedia.org/wiki/Multiply-with-carry_pseudorandom_number_generator#Complementary-multiply-withcarry_generators}
 }

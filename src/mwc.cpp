@@ -33,19 +33,30 @@ using namespace std;
 // [[Rcpp::export]]
 
 
-NumericVector mwc(int seed, int n, long long b = 4294967296, long long a = 7, long long c = 4){
-  NumericVector generated_numbers;
+NumericVector mwc(int seed,
+                  int n,
+                  double b = 4294967296.0,
+                  double a = 7.0,
+                  double c = 4.0) {
+  const long long b_ = static_cast<long long>(b);
+  long long a_ = static_cast<long long>(a);
+  long long c_ = static_cast<long long>(c);
+  
+  NumericVector generated_numbers(n);
   long long x = seed;
-
-  for(int i = 0; i < n; ++i){
+  
+  for (int i = 0; i < n; ++i) {
     long long old_x = x;
-    x = (a * old_x + c) % b;
-    c = floor((a * old_x + c) / b);
-    generated_numbers.push_back(x);
+    
+    long long value = a_ * old_x + c_;
+    x = value % b_;
+    c_ = value / b_;
+    
+    generated_numbers[i] = static_cast<double>(x);
   }
+  
   return generated_numbers;
 }
-
 
 // Testing
 /*** R

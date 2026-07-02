@@ -4,16 +4,30 @@
 \alias{run_randtests}
 \title{Comprehensive Randomness Battery}
 \usage{
-run_randtests(x, alter = "two.sided")
+run_randtests(
+  x,
+  alter = "two.sided",
+  na_rm = TRUE,
+  alpha = 0.05,
+  p_adjust_method = "none"
+)
 }
 \arguments{
-\item{x}{A numeric vector}
+\item{x}{A numeric vector.}
 
-\item{alter}{Alternative hypothesis: "two.sided" (default), "less", or "greater"}
+\item{alter}{Alternative hypothesis. Accepts:
+"two.sided" default, "less", "greater", "left.sided", or "right.sided".
+"less" is mapped to "left.sided"; "greater" is mapped to "right.sided".}
+
+\item{na_rm}{Logical. If TRUE, missing values are removed before testing.}
+
+\item{alpha}{Significance level used for the Reject_H0 column. Default is 0.05.}
+
+\item{p_adjust_method}{Method for multiple-testing adjustment. Default is "none".}
 }
 \value{
-A data.frame containing detailed diagnostic results
+A data.frame containing diagnostic results for each randomness test.
 }
 \description{
-Comprehensive Randomness Battery
+Runs a suite of nonparametric randomness tests from the `randtests` package.
 }

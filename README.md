@@ -40,7 +40,7 @@ The following is a list of supported random number generators in this package.
 
 - [x] ACORN (`acorn(seed, n, k, M)`)
 
-- [ ] MIXMAX [NOT STARTED]
+- [x] MIXMAX [`mixmax(seed, n, N = 256, seed_method = "lcg", vielbein_index = 1, burn_in = 0, burn_in_cycles = 0, start_after_seed = false, scaling = "mersenne", raw = false, warn_small_N = true)`]
 
 - [ ] Add-with-carry (AWC) [NOT STARTED]
 

@@ -99,10 +99,40 @@ blumb_blumb_shub <- function(seed, p, q, n) {
     .Call(`_randngen_blumb_blumb_shub`, seed, p, q, n)
 }
 
-#' Complementary Multiply with Carry Generator
+#' Complementary Multiply-with-Carry Generator
 #'
+#' Generates a sequence of pseudo-random numbers using a multiply-with-carry-style
+#' recurrence.
 #'
-#' Wikipedia: https://en.wikipedia.org/wiki/Multiply-with-carry_pseudorandom_number_generator#Complementary-multiply-with-carry_generators
+#' The generator updates the state using
+#' \deqn{x_i = (a x_{i-1} + c) \bmod b}
+#' where \eqn{b = 2^{bitsize}}. The carry is updated as
+#' \deqn{c = \left\lfloor (a x_{i-1} + c) / b \right\rfloor}
+#'
+#' @param seed Initial seed value for the generator.
+#' @param n Number of pseudo-random values to generate.
+#' @param r Lag parameter for a complementary multiply-with-carry generator.
+#'   Currently unused in this implementationde
+#' @param bitsize Number of bits used to define the base \eqn{b = 2^{bitsize}}.
+#'   Defaults to `32`.
+#' @param a Multiplier used in the recurrence. Defaults to `7`.
+#' @param c Initial carry value. Defaults to `4`.
+#'
+#' @return A numeric vector of length `n` containing the generated pseudo-random values.
+#'
+#' @details
+#' This implementation uses a multiply-with-carry recurrence. Although the function
+#' is named `cmwc`, the current implementation does not use the lag parameter `r`
+#' and does not apply the complementary transformation commonly used in full CMWC
+#' generators.
+#'
+#' @references
+#' Wikipedia: Multiply-with-carry pseudorandom number generator.
+#' \url{https://en.wikipedia.org/wiki/Multiply-with-carry_pseudorandom_number_generator#Complementary-multiply-withcarry_generators}
+#'
+#' @examples
+#' cmwc(seed = 123, n = 10, r = 5)
+#' @export
 cmwc <- function(seed, n, r, bitsize = 32L, a = 7L, c = 4L) {
     .Call(`_randngen_cmwc`, seed, n, r, bitsize, a, c)
 }
@@ -286,6 +316,88 @@ middlesquare <- function(seed, n) {
     .Call(`_randngen_middlesquare`, seed, n)
 }
 
+#' MIXMAX Random Number Generator
+#'
+#' Generate pseudorandom numbers using a simple Rcpp implementation of the
+#' MIXMAX random number generator.
+#'
+#' MIXMAX is a family of pseudorandom number generators based on matrix
+#' recurrences over the finite field with Mersenne modulus \eqn{2^{61} - 1}.
+#' This function keeps the interface similar to other simple RNG functions:
+#' provide a seed, the number of values to generate, and optional controls.
+#'
+#' @param seed Integer seed. For `"lcg"` and `"spbox"` seeding, `seed` must
+#'   satisfy `0 < seed < 2^61 - 1`. When `seed_method = "vielbein"`, the seed
+#'   is ignored.
+#' @param n Number of pseudorandom values to generate. Must be non-negative.
+#' @param N MIXMAX matrix size. Supported values are `3150`, `1260`, `1000`,
+#'   `720`, `508`, `256`, `88`, `64`, `44`, `40`, `30`, `16`, and `10`.
+#'   The default is `256`.
+#' @param seed_method Seeding method. One of `"lcg"`, `"spbox"`, or
+#'   `"vielbein"`. The default is `"lcg"`.
+#' @param vielbein_index Basis-vector index used only when
+#'   `seed_method = "vielbein"`. Must satisfy `1 <= vielbein_index <= N`.
+#' @param burn_in Number of generated values to discard before returning
+#'   output. Must be non-negative.
+#' @param burn_in_cycles Number of full MIXMAX state-vector updates to discard
+#'   before returning output. Must be non-negative.
+#' @param start_after_seed Logical. If `TRUE`, advance the full MIXMAX state
+#'   once immediately after seeding.
+#' @param scaling Scaling method for returned uniform values. One of
+#'   `"mersenne"`, `"half_open"`, or `"open"`.
+#'   `"mersenne"` returns `raw / (2^61 - 1)`.
+#'   `"half_open"` returns `raw / 2^61`.
+#'   `"open"` returns `(raw + 0.5) / 2^61`.
+#' @param raw Logical. If `FALSE`, return scaled uniform values. If `TRUE`,
+#'   return raw 61-bit integer values stored as doubles. Note that R doubles
+#'   cannot exactly represent every 61-bit integer.
+#' @param warn_small_N Logical. If `TRUE`, warn when `N < 88`.
+#'
+#' @return A numeric vector of length `n`.
+#'
+#' @details
+#' The default call `mixmax(seed = 12345, n = 10000)` uses `N = 256`,
+#' LCG-style seeding, no burn-in, and Mersenne scaling.
+#'
+#' This function is self-contained and does not use or modify R's global random
+#' number generator state.
+#'
+#' @examples
+#' x <- mixmax(seed = 12345, n = 10000)
+#' plot(x, type = "l")
+#'
+#' hist(
+#'   mixmax(seed = 12345, n = 10000),
+#'   breaks = 50,
+#'   main = "MIXMAX RNG",
+#'   xlab = "Generated values"
+#' )
+#'
+#' # Larger matrix size
+#' x_big <- mixmax(seed = 12345, n = 10000, N = 3150)
+#'
+#' # SPBOX seeding
+#' x_spbox <- mixmax(seed = 12345, n = 10000, seed_method = "spbox")
+#'
+#' # Burn-in
+#' x_burn <- mixmax(seed = 12345, n = 10000, burn_in = 1000)
+#'
+#' # Burn-in by full state cycles
+#' x_cycles <- mixmax(seed = 12345, n = 10000, burn_in_cycles = 10)
+#'
+#' # Different scaling choices
+#' x1 <- mixmax(12345, 10000, scaling = "mersenne")
+#' x2 <- mixmax(12345, 10000, scaling = "half_open")
+#' x3 <- mixmax(12345, 10000, scaling = "open")
+#'
+#' # Raw values as doubles
+#' raw_values <- mixmax(12345, 10, raw = TRUE)
+#'
+#' @export
+mixmax <- function(seed, n, N = 256L, seed_method = "lcg", vielbein_index = 1L, burn_in = 0L, burn_in_cycles = 0L, start_after_seed = FALSE, scaling = "mersenne", raw = FALSE, warn_small_N = TRUE) {
+    .Call(`_randngen_mixmax`, seed, n, N, seed_method, vielbein_index, burn_in, burn_in_cycles, start_after_seed, scaling, raw, warn_small_N)
+}
+
 #' Multiply With Carry (MWC)
 #'
 #' The multiply-with-carry (MWC) method is a method invented by \href{https://en.wikipedia.org/wiki/George_Marsaglia}{George Marsaglia} for generating sequences of random integers based on an initial set of from two to many thousands of randomly chosen seed values. The main advantages of the MWC method are that it invokes simple computer integer arithmetic and leads to very fast generation of sequences of random numbers with immense periods, ranging from around \eqn{2^{60}} to \eqn{2^{20000000}}.
@@ -313,12 +425,8 @@ middlesquare <- function(seed, n) {
 #' # Plot numbers to see that they are random
 #' plot(random_numbers)
 #' @export
-mwc <- function(seed, n, b = 4294967296L, a = 7L, c = 4L) {
+mwc <- function(seed, n, b = 4294967296.0, a = 7.0, c = 4.0) {
     .Call(`_randngen_mwc`, seed, n, b, a, c)
-}
-
-run_testu01_c <- function(vec) {
-    .Call(`_randngen_run_testu01_c`, vec)
 }
 
 #' TempleOS Linear Congruential Generator (LCG)

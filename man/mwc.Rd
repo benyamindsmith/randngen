@@ -4,7 +4,7 @@
 \alias{mwc}
 \title{Multiply With Carry (MWC)}
 \usage{
-mwc(seed, n, b = 4294967296, a = 7L, c = 4L)
+mwc(seed, n, b = 4294967296, a = 7, c = 4)
 }
 \arguments{
 \item{seed}{initial starting value}

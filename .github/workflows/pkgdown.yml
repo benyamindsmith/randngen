@@ -40,8 +40,8 @@ jobs:
       # 4) R package dependencies
       - name: Install R dependencies
         run: |
-          Rscript -e 'install.packages(c("Rcpp","devtools","roxygen2","pkgdown"))'
-          Rscript -e 'devtools::install_deps(dependencies = TRUE)'
+          Rscript -e 'install.packages(c("Rcpp","devtools","pak","roxygen2","pkgdown"))'
+          Rscript -e 'pak::local_install_deps()'
 
       # 5) Build site into docs/
       - name: Build site

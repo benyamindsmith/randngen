@@ -9,8 +9,8 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp
-Imports: Rcpp
-RoxygenNote: 7.3.2
+Imports: Rcpp, randtests
+RoxygenNote: 7.3.3
 Suggests: 
     knitr,
     rmarkdown
