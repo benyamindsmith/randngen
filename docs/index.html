@@ -82,14 +82,14 @@
 Adding a webhook
 This is some text
 --->
-<p>A opinionated R library of pseudo-random number generators written in C++.</p>
+<p>An opinionated R library of pseudo-random number generators written in C++.</p>
 <p>This package aims to be comprehensive with having all popular and emerging random number generators. This package can be used for research and for exploring the properties of random number generators as well.</p>
 <p><img src="https://github.com/user-attachments/assets/24323dfd-ed8b-4120-ab3d-605864d42cc1"></p>
 <div class="section level2">
 <h2 id="installing-this-package">Installing this Package<a class="anchor" aria-label="anchor" href="#installing-this-package"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"benyamindsmith/randngen"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"benyamindsmith/randngen"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="random-number-generators-available-in-this-package">Random Number Generators Available in this Package<a class="anchor" aria-label="anchor" href="#random-number-generators-available-in-this-package"></a>
@@ -106,7 +106,7 @@ This is some text
 <li><p><label><input type="checkbox" checked>Inversive Congruential Generator (<code>icg(q, a, c, seed,n)</code>)</label></p></li>
 <li><p><label><input type="checkbox" checked>Blumb Blumb Shub (<code>blumb_blumb_shub(seed, p, q, n)</code>)</label></p></li>
 <li><p><label><input type="checkbox" checked>ACORN (<code>acorn(seed, n, k, M)</code>)</label></p></li>
-<li><p><label><input type="checkbox">MIXMAX [NOT STARTED]</label></p></li>
+<li><p><label><input type="checkbox" checked>MIXMAX [<code>mixmax(seed, n, N = 256, seed_method = "lcg", vielbein_index = 1, burn_in = 0, burn_in_cycles = 0, start_after_seed = false, scaling = "mersenne", raw = false, warn_small_N = true)</code>]</label></p></li>
 <li><p><label><input type="checkbox">Add-with-carry (AWC) [NOT STARTED]</label></p></li>
 <li><p><label><input type="checkbox">Subtract-with-borrow (SWB) [NOT STARTED]</label></p></li>
 <li><p><label><input type="checkbox">Maximally periodic reciprocals [NOT STARTED]</label></p></li>
@@ -148,11 +148,6 @@ This is some text
 <p>To get involved, feel free to open up and issue and submit a PR.</p>
 </div>
 <div class="section level2">
-<h2 id="future-work">Future Work<a class="anchor" aria-label="anchor" href="#future-work"></a>
-</h2>
-<p>After building out a significant amount of random number generators and doing the appropriate documentation. Next steps would be to either a utility package or a suite of functions within this package that will implement <a href="https://en.wikipedia.org/wiki/Diehard_tests" class="external-link">Diehard tests</a> and <a href="https://en.wikipedia.org/wiki/TestU01" class="external-link">TestU1 tests</a>.</p>
-</div>
-<div class="section level2">
 <h2 id="similar-packages-and-inspiration">Similar Packages and Inspiration<a class="anchor" aria-label="anchor" href="#similar-packages-and-inspiration"></a>
 </h2>
 <ul>
@@ -162,6 +157,10 @@ This is some text
 <li><p><a href="https://en.cppreference.com/w/cpp/numeric/random" class="external-link">The <code>random</code> C++ library</a></p></li>
 <li><p><a href="https://github.com/coatless-rpkg/sitmo" class="external-link">The <code>sitmo</code> R package</a></p></li>
 <li><p><a href="https://github.com/unuran/Runuran/" class="external-link">The <code>Runuran</code> R package</a></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/randtests/index.html" class="external-link">The <code>randtests</code> R package</a></p></li>
+<li><p><a href="https://github.com/eddelbuettel/rdieharder" class="external-link">The <code>rdieharder</code> R package</a></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/randtoolbox/index.html" class="external-link">The <code>randtoolbox</code> R package</a></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/CryptRndTest/index.html" class="external-link">The <code>CrypRndTest</code> R package</a></p></li>
 <li><p><a href="https://github.com/schmouk/PyRandLib" class="external-link">PyRandLib</a></p></li>
 <li><p><a href="https://github.com/tylov-fork/PractRand" class="external-link">PractRand</a></p></li>
 </ul>
