@@ -14,11 +14,11 @@ jobs:
     steps:
       # 1) Checkout with push rights
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: true
 
-      # 2) Pandoc (for vignettes) and R
+      # 2) Pandoc and R
       - name: Set up Pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
@@ -37,25 +37,26 @@ jobs:
             libxml2-dev \
             libboost-dev
 
-      # 4) R package dependencies
+      # 4) R package dependencies (Optimized with caching)
       - name: Install R dependencies
-        run: |
-          Rscript -e 'install.packages(c("Rcpp","devtools","pak","roxygen2","pkgdown"))'
-          Rscript -e 'pak::local_install_deps()'
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::pkgdown, local::.
+          needs: website
 
       # 5) Build site into docs/
       - name: Build site
-        run: Rscript -e 'devtools::build_site()'
+        run: Rscript -e 'pkgdown::build_site()'
 
       # 6) Commit & push only docs/ if changed
       - name: Commit and push docs/
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/
           if git diff --cached --quiet; then
             echo "No changes to docs/"
           else
-            git commit -m "Rebuild site"
+            git commit -m "Rebuild site [skip ci]"
             git push
           fi
