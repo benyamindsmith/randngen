@@ -88,62 +88,47 @@ runif(10000)|>
 
 ## R's history with PRNGs 
 
-__Disclaimer:__ _This section was copied from output from ChatGPT. I have not found information on this collected in one individual place. However I was told by ChatGPT that it "[...] is well-documented in R’s official NEWS files, which detail changes and new features introduced in each R version ...". If this information is misleading or false, please [open an issue](https://github.com/benyamindsmith/randngen/issues/new) or submit a pull request with more accurate information._
+__Disclaimer:__ _This section was copied from output from Gemeni. I have not found information on this collected in one individual place. However I was told by ChatGPT that it "[...] is well-documented in R’s official NEWS files, which detail changes and new features introduced in each R version ...". If this information is misleading or false, please [open an issue](https://github.com/benyamindsmith/randngen/issues/new) or submit a pull request with more accurate information._
+## R's History with PRNGs
 
-R's base distributions have evolved in their use of Pseudo-Random Number Generators (PRNGs) over time to improve accuracy, speed, and security. Each R version may implement different PRNGs depending on updates, which can impact reproducibility for code across versions. Here’s a summary of the key PRNGs used across different base R versions and the changes introduced over time.
+R's base distributions have steadily evolved their Pseudo-Random Number Generators (PRNGs) to prioritize longer periods, better equidistribution, and improved accuracy. Here is an accurate timeline of R's PRNG infrastructure.
 
-### 1. **Early Versions of R (before the 1.7.0 series)**
-- In the earliest versions of R, pseudo-random number generation was already configurable but less standardized in terms of defaults.
-- Base R supported several uniform PRNG algorithms, including **Wichmann–Hill**, **Marsaglia-Multicarry**, and **Super-Duper**.
-- Normal random numbers were generated using the **Kinderman–Ramage** method, which was later found to have approximation issues. For reproducibility, this legacy behavior is preserved under the name `"Buggy Kinderman-Ramage"`.
+### 1. Early Versions of R (Pre-1.7.0)
+* **Default PRNG**: Marsaglia-Multicarry
+* **Default Normal RNG**: Kinderman-Ramage
+* **Context**: Early R relied heavily on George Marsaglia's multiply-with-carry approach, which offered a period of over 2^60. 
+* **Legacy**: The original normal random number generator was later found to have approximation issues in the tails of the distribution. To ensure older scripts remain reproducible, R preserves this specific legacy algorithm under the name `"Buggy Kinderman-Ramage"`. Other uniform alternatives available at the time included **Wichmann-Hill** and **Super-Duper**.
 
-Rather than relying on a single primitive generator, early R emphasized flexibility, with the understanding that defaults and algorithms might evolve.
+### 2. R 1.7.0 Series (April 2003)
+* **Default PRNG**: Mersenne Twister (MT19937)
+* **Default Normal RNG**: Inversion
+* **Context**: This major update shifted the default uniform PRNG to the **Mersenne Twister**, known for its massive cycle period of 2^19937 - 1 and strong equidistribution properties. 
+* **Reproducibility**: To handle the breaking change in random streams, this release introduced the `RNGversion()` function, allowing users to explicitly request the algorithms used in older versions of R.
 
+### 3. Introduction of L'Ecuyer-CMRG
+* **Default PRNG**: Mersenne Twister (Maintained)
+* **Context**: R introduced the **L'Ecuyer-CMRG** (MRG32k3a) algorithm to solve the problem of random number generation in parallelized code.
+* **Use Case**: It provides multiple independent streams of random numbers, ensuring that parallel simulations do not suffer from overlapping random sequences or compromised statistical properties.
 
-### 2. **R 1.7.0 Series (documented in [R 1.7.1 NEWS](https://svn.r-project.org/R/tags/R-1-7-1/NEWS))**
-- **PRNG**: Mersenne Twister (MT19937)
-- **Details**: In the R 1.7.0 series, R changed its default uniform PRNG to the widely used **Mersenne Twister (MT19937)**, which has a period of \(2^{19937} - 1\).
-- **Additional**: At the same time, the default method for generating normal random numbers was changed to **Inversion**.
-- **Reproducibility**: The function `RNGversion()` was introduced, allowing users to reproduce the exact RNG behavior of earlier R versions.
+### 4. R 3.6.0 Series (April 2019)
+* **Default PRNG**: Mersenne Twister (Maintained)
+* **Context**: R fundamentally changed how discrete uniform random numbers are generated, directly impacting functions like `sample()`.
+* **Technical Fix**: Previous versions used a modulo arithmetic method that introduced a slight bias in discrete sampling. R 3.6.0 replaced this with a rejection sampling method, ensuring perfectly uniform probabilities when drawing integers.
 
-This release marks the point at which Mersenne Twister became the default generator in R.
+### 5. R 4.x Series (Current Behavior)
+* **Default PRNG**: Mersenne Twister (Maintained)
+* **Context**: Base R continues to rely on MT19937 as the default, with L'Ecuyer-CMRG recommended for multi-threading. 
+* **Ecosystem Expansion**: Base R natively lacks modern, state-of-the-art generators like the `xoshiro` or `xoroshiro` families. Users requiring these high-performance algorithms must rely on external packages, such as `randngen`, to bridge the gap between base R's established defaults and cutting-edge PRNG research.
 
-### 3. **User-Selectable PRNGs in Base R**
-- **PRNG**: Default remains Mersenne Twister
-- **Details**: Across subsequent R releases, base R continued to support multiple user-selectable uniform PRNGs via `RNGkind()`, including:
-  - `"Wichmann-Hill"`
-  - `"Marsaglia-Multicarry"`
-  - `"Super-Duper"`
-  - `"Knuth-TAOCP"`
-  - `"Knuth-TAOCP-2002"`
+### Summary of Defaults and Capabilities
 
-These generators serve different purposes and allow users to choose algorithms tailored to specific statistical or computational needs.
-
-
-### 4. **Introduction of L'Ecuyer-CMRG**
-- **PRNG**: L'Ecuyer-CMRG (MRG32k3a)
-- **Details**: R added **"L'Ecuyer-CMRG"** as an additional RNG kind to support **multiple independent random-number streams**.
-- **Use case**: This generator is particularly important for parallel simulations, where independent but reproducible streams are required.
-
-L'Ecuyer-CMRG remains a core component of R’s RNG infrastructure.
-
-### 6. **R 4.x Series (Current Behavior)**
-- **PRNG**: Default remains Mersenne Twister
-- **Details**: In modern R versions:
-  - Mersenne Twister continues to be the default uniform PRNG.
-  - L'Ecuyer-CMRG remains available for parallel and multi-stream use.
-  - Historical RNG behavior can be reproduced using `RNGversion()`.
-- **Note**: Base R does **not** include xoroshiro or xoshiro-family generators as options in `RNGkind()`. Such generators are available via external packages, but are not part of base R.
-
-### Summary Table
-| **R Version / Era** | **Default PRNG**     | **Other Available PRNGs**                                       | **Notes** |
-|--------------------|-----------------------|-------------------------------------------------------------------|----------|
-| Before R 1.7.0     | Version-dependent     | Wichmann–Hill, Marsaglia-Multicarry, Super-Duper                  | Legacy normal RNG preserved as `"Buggy Kinderman-Ramage"` |
-| R 1.7.0 series     | Mersenne Twister      | Same alternatives remain selectable                               | Default RNG changed; `RNGversion()` introduced            |
-| Later additions    | Mersenne Twister      | L'Ecuyer-CMRG                                                     | Supports multiple independent streams                     |
-| R 3.6.0            | Mersenne Twister      | (unchanged)                                                       | Corrected discrete-uniform sampling algorithm             |
-| R 4.x (current)    | Mersenne Twister      | Wichmann–Hill, Marsaglia-Multicarry, Super-Duper, Knuth variants, L'Ecuyer-CMRG | No xoroshiro/xoshiro in base R              |
-
+| R Version / Era | Default PRNG | Normal RNG | Key Updates & Notes |
+|---|---|---|---|
+| **Before R 1.7.0** | Marsaglia-Multicarry | Kinderman-Ramage | Legacy methods preserved via `"Buggy Kinderman-Ramage"` |
+| **R 1.7.0 Series** | Mersenne Twister | Inversion | MT19937 becomes the standard; `RNGversion()` introduced |
+| **Later Additions** | Mersenne Twister | Inversion | L'Ecuyer-CMRG added for parallel processing and independent streams |
+| **R 3.6.0** | Mersenne Twister | Inversion | Modulo-based discrete sampling replaced with rejection sampling in `sample()` |
+| **R 4.x (Current)** | Mersenne Twister | Inversion | Relies on external packages like `randngen` for `xoshiro` variants |
 
 
 ### Reproducibility Across Versions

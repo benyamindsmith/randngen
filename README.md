@@ -5,7 +5,7 @@
 Adding a webhook
 This is some text
 --->
-A opinionated R library of pseudo-random number generators written in C++.
+An opinionated R library of pseudo-random number generators written in C++.
 
 This package aims to be comprehensive with having all popular and emerging random number generators. This package can be used for research and for exploring the properties of random number generators as well. 
 
@@ -105,10 +105,6 @@ Since this project is very much in its infancy, there is alot of opportunity to 
 
 To get involved, feel free to open up and issue and submit a PR. 
 
-## Future Work
-
-After building out a significant amount of random number generators and doing the appropriate documentation. Next steps would be to either a utility package or a suite of functions within this package that will implement [Diehard tests](https://en.wikipedia.org/wiki/Diehard_tests) and [TestU1 tests](https://en.wikipedia.org/wiki/TestU01).
-
 ## Similar Packages and Inspiration
 
 - [The `PRNG` R package](https://cran.r-project.org/web/packages/PRNG/PRNG.pdf)
@@ -124,6 +120,12 @@ After building out a significant amount of random number generators and doing th
 - [The `Runuran` R package ](https://github.com/unuran/Runuran/)
 
 - [The `randtests` R package](https://cran.r-project.org/web/packages/randtests/index.html)
+
+- [The `rdieharder` R package](https://github.com/eddelbuettel/rdieharder)
+
+- [The `randtoolbox` R package](https://cran.r-project.org/web/packages/randtoolbox/index.html)
+
+- [The `CrypRndTest` R package](https://cran.r-project.org/web/packages/CryptRndTest/index.html)
 
 - [PyRandLib](https://github.com/schmouk/PyRandLib) 
 
