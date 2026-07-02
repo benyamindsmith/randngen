@@ -1,23 +1,82 @@
 #' Comprehensive Randomness Battery
 #'
-#' Runs a suite of nonparametric randomness tests from the `randtests` package.
+#' Runs a suite of nonparametric randomness tests from the \code{randtests}
+#' package.
 #'
-#' @param x A numeric vector.
-#' @param alter Alternative hypothesis. Accepts:
-#'   "two.sided" default, "less", "greater", "left.sided", or "right.sided".
-#'   "less" is mapped to "left.sided"; "greater" is mapped to "right.sided".
-#' @param na_rm Logical. If TRUE, missing values are removed before testing.
-#' @param alpha Significance level used for the Reject_H0 column. Default is 0.05.
-#' @param p_adjust_method Method for multiple-testing adjustment. Default is "none".
-#' @importFrom stats p.adjust
-#' @return A data.frame containing diagnostic results for each randomness test.
+#' The overall null hypothesis is that the input sequence is randomly ordered,
+#' independent, and has no systematic trend or non-random structure. Each test
+#' evaluates this null hypothesis from a different perspective, such as runs,
+#' ranks, signs of differences, turning points, or monotonic trend.
+#'
+#' @param x A numeric vector containing the sequence to test for randomness.
+#' @param alter Alternative hypothesis. One of \code{"two.sided"},
+#'   \code{"less"}, \code{"greater"}, \code{"left.sided"}, or
+#'   \code{"right.sided"}. The values \code{"less"} and \code{"greater"} are
+#'   mapped internally to \code{"left.sided"} and \code{"right.sided"},
+#'   respectively.
+#' @param na_rm Logical. If \code{TRUE}, missing values are removed before
+#'   testing. If \code{FALSE}, the function throws an error when \code{x}
+#'   contains missing values.
+#' @param alpha Significance level used to determine the \code{Reject_H0}
+#'   column. Default is \code{0.05}.
+#'
+#' @details
+#' The null hypothesis for the full battery is:
+#'
+#' \deqn{H_0: the sequence is randomly ordered, independent, and contains no systematic pattern.}
+#'
+#' The tests included are:
+#' \describe{
+#'   \item{Bartels Rank Test}{Tests whether the observations are randomly ordered,
+#'   with no serial dependence or trend.}
+#'   \item{Cox Stuart Test}{Tests whether there is no monotonic trend in the
+#'   sequence.}
+#'   \item{Difference Sign Test}{Tests whether successive differences show no
+#'   systematic upward or downward tendency.}
+#'   \item{Runs Test}{Tests whether the sequence is randomly ordered around a
+#'   reference point, typically the median.}
+#'   \item{Turning Point Test}{Tests whether the number of local peaks and
+#'   valleys is consistent with randomness.}
+#'   \item{Rank Test}{Tests whether the ordering of the observations is random,
+#'   with no trend.}
+#' }
+#'
+#' The \code{Reject_H0} column indicates whether each test rejects its null
+#' hypothesis at the chosen \code{alpha} level using the raw p-value returned by
+#' that test.
+#'
+#' @return A \code{data.frame} with one row per randomness test and the following
+#'   columns:
+#' \describe{
+#'   \item{Test}{Short name of the randomness test.}
+#'   \item{Method}{Method name returned by the underlying \code{randtests}
+#'   function.}
+#'   \item{Alternative}{Alternative hypothesis used in the test.}
+#'   \item{N}{Number of non-missing observations tested.}
+#'   \item{Statistic}{Observed test statistic.}
+#'   \item{Statistic_Name}{Name of the test statistic, when available.}
+#'   \item{Expected_Mu}{Expected value of the statistic under the null
+#'   hypothesis, when available.}
+#'   \item{Variance}{Variance of the statistic under the null hypothesis, when
+#'   available.}
+#'   \item{P_Value}{Raw p-value returned by the test.}
+#'   \item{Error}{Error message if the test failed; otherwise \code{NA}.}
+#'   \item{Reject_H0}{Logical value indicating whether the null hypothesis is
+#'   rejected at level \code{alpha} using the raw p-value.}
+#' }
+#'
+#' @examples
+#' library(randngen)
+#' n <- 10000
+#' seed <- 12345
+#' lcg_digits <- lcg(n=n, seed=seed)
+#' run_randtests(lcg_digits)
 #' @export
 run_randtests <- function(
     x,
     alter = "two.sided",
     na_rm = TRUE,
-    alpha = 0.05,
-    p_adjust_method = "none"
+    alpha = 0.05
 ) {
   if (!requireNamespace("randtests", quietly = TRUE)) {
     stop("Please install the 'randtests' package.", call. = FALSE)
@@ -130,15 +189,10 @@ run_randtests <- function(
   
   results <- do.call(rbind, results)
   
-  results$P_Adjusted <- p.adjust(
-    results$P_Value,
-    method = p_adjust_method
-  )
-  
   results$Reject_H0 <- ifelse(
-    is.na(results$P_Adjusted),
+    is.na(results$P_Value),
     NA,
-    results$P_Adjusted < alpha
+    results$P_Value < alpha
   )
   
   rownames(results) <- NULL
